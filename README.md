@@ -9,8 +9,7 @@ Also check my alumni page: https://marcgloor.github.io/
 Inline-style:
 ![alt text](https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_Firewall_Screenshot.png "Pulsechain Validator Firewall")
 
-<a href="https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_GNU-screen_session-handler.mp4" target="_blank"><img src="https://github.com/marcgloor/pulsechain/blob/main/pulsechain_console.jpg
-" alt="Pulsechain Screen Session handler short clip" width="240" height="180" border="10" /></a>
+https://github.com/marcgloor/pulsechain/assets/41461000/e8ea0feb-b53e-4361-b7f2-5209e00f4b0b
 
 ## General Remarks
 If you intend to become a Pulsechain validator, wisely consider your ambitions. Becoming a pulsechain validator is imperative for building up a sustainable and stable pulsechain blockchain infrastructure.
