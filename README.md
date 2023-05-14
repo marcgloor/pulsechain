@@ -1,8 +1,10 @@
 2023/05/14 - written by Marc O. Gloor <marc.gloor @ alumni.nus.edu.sg>
 
 # README for my pulsechain scripts git repository
-Contact me if you need more support: @go4mark on Telegram / Marculix
-Also check my alumni page: https://marcgloor.github.io/
+Contact me if you need more support: @go4mark on Telegram -> Marculix. Also check my alumni page: https://marcgloor.github.io/ or my twitter account https://twitter.com/go_marcgloor
+
+## Let's start
+If you feel ready to build up your own pulsechain validator full-sync node, here I share my scripts with you. Note that this is not a step-by-step manual to build up a pulsechain validator from scratch. There are fantatic sources, one of them is e.g. Hodldogs scripts: https://hodldog.notion.site/PulseChain-Mainnet-Node-Validator-Guide-390243a66f3449a9a2425db25370ad89
 
 ## Pulsechain Operations / Screenie demo & Pulsechain firewall
 ![alt text](https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_Firewall_Screenshot.png "Pulsechain Validator Firewall")
@@ -18,13 +20,10 @@ You also need to gain networking and security skills, knowing how to protect you
 
 In order to protect your staked funds on pulsechain mainnet, download respective HOWTOS, Manuals and purchase relevant books. Only operate on pulsechain testnet prior to go-live on mainnet and connect yourself with your pulsechain developers peer-group as well in telegram & discord.
 
-## Let's start
-If you feel ready to build up your own pulsechain validator node, here I share my scripts with you. Note that this is not a step-by-step manual to build up a pulsechain validator from scratch. There are fantatic sources, e.g. Hodldogs https://hodldog.notion.site/PulseChain-Mainnet-Node-Validator-Guide-390243a66f3449a9a2425db25370ad89
-
 ## Pulsechain Validator Design
 Hardware:
 I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
-1.  2 RAID1 mirrored operating system EXT4 SSD Sata III disks in 1st disk bay
+1. 2 RAID1 mirrored operating system EXT4 SSD Sata III disks in 1st disk bay
 2. 2 Pulsechain validator and RAID1 mirrored SSD disks in 2nd & 3rd disk bay
 3. 1 General backup HDD disk to run incremental rsync backup rotation & retention management in 4th disk bay
 
