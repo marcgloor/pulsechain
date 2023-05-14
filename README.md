@@ -7,6 +7,9 @@ Contact me if you need more support: @go4mark on Telegram -> Marculix. Also chec
 If you feel ready to build up your own pulsechain validator full-sync node, here I share my scripts with you. Note that this is not a step-by-step manual to build up a pulsechain validator from scratch. There are fantatic sources, one of them is e.g. Hodldogs scripts: https://hodldog.notion.site/PulseChain-Mainnet-Node-Validator-Guide-390243a66f3449a9a2425db25370ad89
 
 ## Pulsechain Operations / Screenie demo & Pulsechain firewall
+
+![alt text](https://github.com/marcgloor/pulsechain/blob/main/pulsechain-console_etcissue.net.png "Pulsechain agetty console banner")
+
 ![alt text](https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_Firewall_Screenshot.png "Pulsechain Validator Firewall")
 
 https://github.com/marcgloor/pulsechain/assets/41461000/4f1c0c7f-e0de-473a-90c6-41901d449d29
