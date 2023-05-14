@@ -1,0 +1,45 @@
+# Pulsechain specific crontab jobs
+#
+# 2023/05/14 - written by Marc O. Gloor <marc.gloor@alumni.nus.edu.sg>
+# Use this crontab jobs with care and just use what makes sense to you!
+#
+# Note: Generally, a firewall is a permanent work in progress, a continous improvement effort
+# This wip version was a quick and dirty hack taken from an existing server to
+# suit the needs of hardening a pulsechain validator mainnet node.
+# Report any issues, hints or suggestions to me and I will update this git branch accordingly
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+#
+#
+
+
+# firewall restart ever 2 odd hours (12 times a day) in order to add update banlist to firewall
+0 1-23/2 * * * root /shell/firewall.sh -restart >/dev/null 2>&1
+
+# weekly atomic time sync via public stratum 1 NTP server
+0 4 * * 1 root /usr/sbin/ntpdate ntp.metas.ch >/dev/null 2>&1 
+
+# hour-meter cronjob below (added by hm installation - https://marcgloor.github.io/hourmeter.html)
+0-59/15 * * * * root /usr/bin/hm -c
+
+# Create audit compliant ZFS dataset snapshots of /mnt/pulsechain: every 10min, every 2h, once daily and once weekly snapshot at midnight
+0-59/10 * * * * root /sbin/zfs destroy pool1/pulsechain@mnt-zpools-pulsechain_10min.snapshot >/dev/null 2>&1 ; /sbin/zfs snapshot pool1/pulsechain@mnt-zpools-pulsechain_10min.snapshot >/dev/null 2>&1
+0 1-23/1 * * *  root /sbin/zfs destroy pool1/pulsechain@mnt-zpools-pulsechain_1h.snapshot >/dev/null 2>&1 ; /sbin/zfs snapshot pool1/pulsechain@mnt-zpools-pulsechain_1h.snapshot >/dev/null 2>&1
+0 0 * * *       root /sbin/zfs destroy pool1/pulsechain@mnt-zpools-pulsechain_daily.snapshot >/dev/null 2>&1 ; /sbin/zfs snapshot pool1/pulsechain@mnt-zpools-pulsechain_daily.snapshot >/dev/null 2>&1
+0 0 * * 0       root /sbin/zfs destroy pool1/pulsechain@mnt-zpools-pulsechain_weekly.snapshot >/dev/null 2>&1 ; /sbin/zfs snapshot pool1/pulsechain@mnt-zpools-pulsechain_weekly.snapshot >/dev/null 2>&1
+
+# Hourly Pulsechain disk-size log
+0 * * * * root echo -n $(date '+\%Y-\%m-\%d_\%H:\%M:\%S: ') >> /var/log/pulsechain-df.log ; du -hs /mnt/pulsechain/prod/execution/ | awk '{ printf(" \%s size is \%s. \n", $2, $1) }' >> /var/log/pulsechain-df.log
+

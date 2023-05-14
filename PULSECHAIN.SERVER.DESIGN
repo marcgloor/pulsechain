@@ -1,0 +1,25 @@
+My Pulsechain Validator Entry level design
+------------------------------------------
+
+Hardware: 
+4 bay HP Enterprise Microserver Gen 8
+5 disks in 4 bays: 
+  2 RAID1 mirrored operating system EXT4 SSD Sata III disks in 1st disk bay
+  2 Pulsechain validator and RAID1 mirrored ZFS SSD disks in 2nd & 3rd disk bay
+  1 General backup HDD disk to run incremental rsync backup rotation & retention management in 4th disk bay
+
+Software:
+  -Operating System: Debian (stable) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure
+   -> https://www.startech.com/en-ch/hdd/35sat225s3r  
+  -Go-eth execution and Prysm consenus client
+  -I am running my validator behind a router and software firewall in screen sessions that can be re-attach remotely using screenie
+   -> https://marcgloor.github.io/screenie.html 
+
+Bandwith: 
+  -I own two identical internet routers (one master, one failover slave)
+  -High latency bandwith of 1000 Mbit/s
+  -Fix IP ideally (I don't have one but use dynymic DNS and homebuilt scripts to mitigage)
+
+Networking: 
+  Fix IP address and configurable router for firewall, static routes and port-forwarding (even DMZ if temporary needed).
+
