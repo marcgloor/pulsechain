@@ -5,8 +5,7 @@ Contact me if you need more support: @go4mark on Telegram / Marculix
 
 Also check my alumni page: https://marcgloor.github.io/
 
-## Pulsechain Operatios
-Inline-style:
+## Pulsechain Operatios / Screenie demo & Pulsechain firewall
 ![alt text](https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_Firewall_Screenshot.png "Pulsechain Validator Firewall")
 
 https://github.com/marcgloor/pulsechain/assets/41461000/e8ea0feb-b53e-4361-b7f2-5209e00f4b0b
