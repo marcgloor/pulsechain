@@ -21,4 +21,25 @@ In order to protect your staked funds on pulsechain mainnet, download respective
 ## Let's start
 If you feel ready to build up your own pulsechain validator node, here I share my scripts with you. Note that this is not a step-by-step manual to build up a pulsechain validator from scratch. There are fantatic sources, e.g. Hodldogs https://hodldog.notion.site/PulseChain-Mainnet-Node-Validator-Guide-390243a66f3449a9a2425db25370ad89
 
+## Pulsechain Validator Design
+Hardware:
+I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
+  -2 RAID1 mirrored operating system EXT4 SSD Sata III disks in 1st disk bay
+  -2 Pulsechain validator and RAID1 mirrored SSD disks in 2nd & 3rd disk bay
+  -1 General backup HDD disk to run incremental rsync backup rotation & retention management in 4th disk bay
+
+Software:
+  -Operating System: Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure -> https://www.startech.com/en-ch/hdd/35sat225s3r
+  -I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives.
+  -Go-eth execution client, Prysm consenus client and Prysm Validator client are running in docker containers that I manually prune from time to time.
+  -I am running my validator behind a physical router firewall and a linux software firewall in tty independent, detached GNU screen sessions that can be re-attached remotely using screenie, a GNU screen wrapper that I wrote 20 years ago -> https://marcgloor.github.io/screenie.html
+  -My pulsechain validator disk holding the full-synced blockchain tree is part of a massive enterprise high-avalability computing capable ZFS diskarray pool that is software RAID1 mirrored among two physical disks. From the respective pulsechain dataset (/blockchain), a time triggered crontab job is generating regular recurring snapshots in a 10min, 1h, daily and weekly intervals that allows me to quickly redirect a new symlink to my mounted pulsedchain root. Using this technique, the business continuity recovery of e.g. 1TB of blockchain data takes a couply of seconds only.
+
+Bandwith:
+  -Failover / BCP: I got a second spare (slave) internet router that is identical to my (master) router
+  -High latency bandwith of 1000 Mbit/s
+  -Fix IP ideally (I don't have one but use dynymic DNS and homebuilt scripts to mitigage)
+
+Networking:
+  -Fix IP address and configurable router for firewall, static routes and port-forwarding (even DMZ if temporary needed).
 
