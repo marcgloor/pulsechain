@@ -38,8 +38,6 @@ Software:
 Bandwith:
 1. Failover / BCP: I got a second spare (slave) internet router that is identical to my (master) router
 2. High latency bandwith of 1000 Mbit/s
-3. Fix IP ideally (I don't have one but use dynymic DNS and homebuilt scripts to mitigage)
-
-Networking:
-1. Fix IP address and configurable router for firewall, static routes and port-forwarding (even DMZ if temporary needed).
+3. Fix IP address and access to a configurable router for firewall, static routes and port-forwarding (even DMZ if temporary needed).
+4. Fix IP ideally (I don't have one but use dynamic DNS and homebuilt scripts to mitigate unforseen effects should my ISP or my router change the IP address (e.g. via DHCP after a lease expired).
 
