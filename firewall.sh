@@ -299,7 +299,7 @@ function start_firewall {
  #ufw allow 443/tcp
 
  # Accpet incoming SSH traffic
- ufw allow 44444/tcp 
+ ufw allow 22/tcp 
 
  # Releae Loopback restrictions
  iptables -A INPUT -i $LOOPBACK_INTERFACE -j ACCEPT
