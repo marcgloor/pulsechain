@@ -2,13 +2,12 @@
 
 # README for my pulsechain scripts git repository
 Contact me if you need more support: @go4mark on Telegram / Marculix
-
 Also check my alumni page: https://marcgloor.github.io/
 
 ## Pulsechain Operatios / Screenie demo & Pulsechain firewall
 ![alt text](https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_Firewall_Screenshot.png "Pulsechain Validator Firewall")
 
-https://github.com/marcgloor/pulsechain/assets/41461000/e8ea0feb-b53e-4361-b7f2-5209e00f4b0b
+https://github.com/marcgloor/pulsechain/assets/41461000/cdc396a9-7216-4ff9-b57f-f6146265ed39
 
 ## General Remarks
 If you intend to become a Pulsechain validator, wisely consider your ambitions. Becoming a pulsechain validator is imperative for building up a sustainable and stable pulsechain blockchain infrastructure.
