@@ -26,13 +26,13 @@ You also need to gain networking and security skills, knowing how to protect you
 In order to protect your staked funds on pulsechain mainnet, download respective HOWTOS, Manuals and purchase relevant books. Only operate on pulsechain testnet prior to go-live on mainnet and connect yourself with your pulsechain developers peer-group as well in telegram & discord.
 
 ## Pulsechain Validator Design
-Hardware:
+###Hardware:
 I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
 1. 2 RAID1 mirrored operating system EXT4 SSD Sata III disks in 1st disk bay
 2. 2 Pulsechain validator and RAID1 mirrored SSD disks in 2nd & 3rd disk bay
 3. 1 General backup HDD disk to run incremental rsync backup rotation & retention management in 4th disk bay
 
-Software:
+###Software:
 1. Operating System: Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure -> https://www.startech.com/en-ch/hdd/35sat225s3r
 2. I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives.
 3. Go-eth execution client, Prysm consenus client and Prysm Validator client are running in docker containers that I manually prune from time to time.
