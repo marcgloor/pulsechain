@@ -8,9 +8,9 @@ If you feel ready to build up your own pulsechain validator full-sync node, here
 
 ## Pulsechain Operations / Screenie demo & Pulsechain firewall
 
-![alt text](https://github.com/marcgloor/pulsechain/blob/main/pulsechain-console_etcissue.net.png "Pulsechain agetty console banner")
+![Console](https://github.com/marcgloor/pulsechain/blob/main/pulsechain-console_etcissue.net.png "Pulsechain agetty console banner")
 
-![alt text](https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_Firewall_Screenshot.png "Pulsechain Validator Firewall")
+![Firewall](https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_Firewall_Screenshot.png "Pulsechain Validator Firewall")
 
 https://github.com/marcgloor/pulsechain/assets/41461000/4f1c0c7f-e0de-473a-90c6-41901d449d29
 
