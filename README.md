@@ -12,6 +12,8 @@ If you feel ready to build up your own pulsechain validator full-sync node, here
 
 ![Firewall](https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_Firewall_Screenshot.png "Pulsechain Validator Firewall")
 
+![IBM RS/6000 nmon](https://github.com/marcgloor/pulsechain/blob/main/nmon.png "Pulsechain benchmark tool")
+
 https://github.com/marcgloor/pulsechain/assets/41461000/4f1c0c7f-e0de-473a-90c6-41901d449d29
 
 ## General Remarks
