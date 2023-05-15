@@ -1,7 +1,8 @@
 #!/bin/ksh
 # @(#) Pulsechain Secure System Firewall
-# $Id: firewall.sh,v 1.52 2023/05/14 08:40:12 root Exp $
+# $Id: firewall.sh,v 1.2 2023/05/15 20:19:18 root Exp $
 # 08/06/2003 - written by Marc O. Gloor <marc.gloor@alumni.nus.edu.sg>
+# 15/05/2023 - redesigned fork for Geth/Prysm based Pulsechain Validator Node
 # 
 # Note: Generally, a firewall is a permanent work in progress, a continous improvement effort
 # This wip version was a quick and dirty hack taken from an existing server to 
