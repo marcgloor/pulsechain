@@ -26,20 +26,20 @@ You also need to gain networking and security skills, knowing how to protect you
 In order to protect your staked funds on pulsechain mainnet, download respective HOWTOS, Manuals and purchase relevant books. Only operate on pulsechain testnet prior to go-live on mainnet and connect yourself with your pulsechain developers peer-group as well in telegram & discord.
 
 ## Pulsechain Validator Design
-### Hardware:
+### Hardware
 I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
 1. 2 RAID1 mirrored operating system EXT4 SSD Sata III disks in 1st disk bay
 2. 2 Pulsechain validator and RAID1 mirrored SSD disks in 2nd & 3rd disk bay
 3. 1 General backup HDD disk to run incremental rsync backup rotation & retention management in 4th disk bay
 
-### Software:
+### Software
 1. Operating System: Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure -> https://www.startech.com/en-ch/hdd/35sat225s3r
 2. I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives.
 3. Go-eth execution client, Prysm consenus client and Prysm Validator client are running in docker containers that I manually prune from time to time.
 4. I am running my validator behind a physical router firewall and a linux software firewall in tty independent, detached GNU screen sessions that can be re-attached remotely using screenie, a GNU screen wrapper that I wrote 20 years ago -> https://marcgloor.github.io/screenie.html
-5. My pulsechain validator disk holding the full-synced blockchain tree is part of a massive enterprise high-avalability computing capable ZFS diskarray pool that is software RAID1 mirrored among two physical disks. From the respective pulsechain dataset (/blockchain), a time triggered crontab job is generating regular recurring snapshots in a 10min, 1h, daily and weekly intervals that allows me to quickly redirect a new symlink to my mounted pulsedchain root. Using this technique, the business continuity recovery of e.g. 1TB of blockchain data takes a couply of seconds only.
+5. Disaster Recovery, Rollback and Business Continuity: My pulsechain validator disk that is holding the full-synced blockchain data structure is part of an enterprise level high-avalability computing capable ZFS diskarray pool that is software RAID1 mirrored among two physical 8TB SSD disks. From the respective pulsechain dataset, a time triggered crontab job is generating regular recurring snapshots in a 10min interval up to 10 days. Using ZFS snapshots allows you to quickly redirect a new symlink to your mounted pulsedchain root directory in case of an incident such as e.g. a corrupted consensus or execution database. This way, you can rollback the entire validator on the timeline back to a desired point in history (like a time capsule on a filesystem level). As an example, rolling back a 1TB blockchain validator takes a couple of seconds using copy-on-write technique rather than hours using conventional tools such as dd, rsync, scp, cp or tar commands.
 
-### Networking:
+### Networking
 1. Failover / BCP: I got a second spare (slave) internet router that is identical to my (master) router
 2. Regular latency checks / Bandwith of 1000 Mbit/s.
 3. Access to a configurable router for firewall, static routes and port-forwarding (even to temporarily activate a DMZ to your validator if needed).
