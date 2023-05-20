@@ -1,8 +1,8 @@
 #!/bin/ksh
-# @(#) Pulsechain Secure System Firewall
-# $Id: firewall.sh,v 1.2 2023/05/15 20:19:18 root Exp $
-# 08/06/2003 - written by Marc O. Gloor <marc.gloor@alumni.nus.edu.sg>
-# 15/05/2023 - redesigned fork for Geth/Prysm based Pulsechain Validator Node
+# @(#) Pulsechain Validator Secure System Firewall
+# $Id: firewall.sh,v 1.4 2023/05/20 22:27:20 root Exp $
+# 2023/05/15 - redesigned fork for Geth/Prysm based Pulsechain Validator Node
+# 2003/06/08 - written by Marc O. Gloor <marc.gloor@alumni.nus.edu.sg>
 # 
 # Note: Generally, a firewall is a permanent work in progress, a continous improvement effort
 # This wip version was a quick and dirty hack taken from an existing server to 
@@ -267,7 +267,6 @@ function start_firewall {
  # Limit the Number of Concurrent Apache Connections per IP Address
  #iptables -A INPUT -p tcp --syn --dport 80 -m connlimit --connlimit-above 5 -j DROP
 
-
  # ---------------------- Accept the following Pulsechain Traffic FROM HERE ----------------------------------
 
  # Generally support outgoing traffic
@@ -300,7 +299,7 @@ function start_firewall {
  #ufw allow 443/tcp
 
  # Accpet incoming SSH traffic
- ufw allow 22/tcp 
+ ufw allow 44444/tcp 
 
  # Releae Loopback restrictions
  iptables -A INPUT -i $LOOPBACK_INTERFACE -j ACCEPT
@@ -378,5 +377,4 @@ logger -p user.err -t $SCNAME $ACTION2
 exit $EXIT
 
 #EOF
-
 
