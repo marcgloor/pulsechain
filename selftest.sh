@@ -32,15 +32,11 @@ echo -n "Performing latency check (y/[n]): "
     *) echo "Proceeding without bandwith throughput selftest..." ;;
     esac;
 
-echo
- 
-echo "ZFS pool must be ONLINE: "
-zpool list 
-
 echo 
 
 echo "ZFS pool must mounted: "
 zpool status
+zpool iostat -v
 
 echo 
 
@@ -59,15 +55,15 @@ systemctl list-units -t service |  grep 'systemd-timesyncd.service'
 echo
 
 echo "System root disk temperature:"
-hddtemp /dev/sdc
+hddtemp /dev/sda
 
 echo 
 
-echo "Validator disks temperature:"
-#hddtemp  
-echo "<Placeholder>"
+#echo "Validator disks temperature:"
+#hddtemp /dev/sdb
+#hddtemp /dev/sdc
 
-echo 
+#echo 
  
 echo "Validator snapshots available:"
 #ls -1 /mnt/pulsechain/snapshots/
