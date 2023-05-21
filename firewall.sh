@@ -36,7 +36,6 @@
 # 
 # 
 
-
 # global definitions
 OwnIPscan=$(curl -s ident.me)
 EXIT=0
