@@ -1,6 +1,6 @@
 #!/bin/ksh
 # @(#) Pulsechain Validator Secure System Firewall
-# $Id: firewall.sh,v 1.4 2023/05/20 22:27:20 root Exp $
+# $Id: firewall.sh,v 1.5 2023/05/21 09:11:10 root Exp root $
 # 2023/05/15 - redesigned fork for Geth/Prysm based Pulsechain Validator Node
 # 2003/06/08 - written by Marc O. Gloor <marc.gloor@alumni.nus.edu.sg>
 # 
@@ -32,8 +32,6 @@
 # 
 # todo: 
 # import an exported firewall policy
-# 
-# 
 # 
 
 # global definitions
@@ -298,7 +296,7 @@ function start_firewall {
  #ufw allow 443/tcp
 
  # Accpet incoming SSH traffic
- ufw allow 22/tcp 
+ ufw allow 44444/tcp 
 
  # Releae Loopback restrictions
  iptables -A INPUT -i $LOOPBACK_INTERFACE -j ACCEPT
