@@ -1,5 +1,5 @@
-2023/05/14 - first released by Marc O. Gloor <marc dot gloor at u dot nus dot edu>
 `Id: README.md,v 1.2 2023/05/28 15:57:31 root Exp root $`
+2023/05/14 - first released by Marc O. Gloor <marc dot gloor at u dot nus dot edu> 
 
 # README for my pulsechain scripts git repository
 Contact me if you need more support: @go4mark on Telegram -> Marculix. Also check my alumni page: https://marcgloor.github.io/ or my twitter account https://twitter.com/go_marcgloor
@@ -20,7 +20,8 @@ This pulsechain validator archive is NOT dependent or based on any fancy 3rd par
 ## General Remarks
 If you intend to become a Pulsechain validator, wisely consider your plans. Becoming a pulsechain validator is imperative for building up a sustainable and stable pulsechain blockchain infrastructure. It does come with substantial risks.
 
-Don't play around on Pulsechain mainnet if you qualify your Linux skills entry level. Do not execute install scripts and think that's all you need to run a validator. **You will lose money**. In order to protect your staked funds on pulsechain mainnet, download respective HOWTOS, Manuals and purchase relevant books. Wiesely test on pulsechain testnet prior to deploy on mainnet and connect yourself with your pulsechain developers peer-group as well in telegram & discord.
+Don't play around on Pulsechain mainnet if you qualify your Linux skills entry level. Do not execute install scripts and think that's all you need to run a validator --> **You will lose money**. 
+In order to protect your staked funds on pulsechain mainnet, download respective HOWTOS, Manuals and purchase relevant books. Wiesely test on pulsechain testnet prior to deploy on mainnet and connect yourself with your pulsechain developers peer-group as well in telegram & discord.
 
 Nobody want to see pulsechain validators that are not capable of bringing back their nodes after facing minor issues. Note that you need to be skilled in hardware and software managemenet, in particular Linux system administration and engineering, redundancy management and system automation, especially relevant if you run into issues and incidents on mainnet. Learn everything relevant about journaling and copy-on-write filesystems for software RAID management and snapshots.
 
