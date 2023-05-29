@@ -46,6 +46,7 @@ docker rmi <execution-client> <consensus-client> <validator-client>
 '''
 4. I am running my validator behind a physical router firewall and an additional linux software firewall in detached GNU screen sessions that can be re-attached remotely using screenie, a GNU screen wrapper that I wrote 20 years ago -> https://marcgloor.github.io/screenie.html
 5. Disaster Recovery, Rollback and Business Continuity: The goal is Fives Nines high availablility, the lowest MTTR and the highest MTBF. You should measure and report your historical and statistical real time data of the system with the commands hm (https://marcgloor.github.io/hourmeter.html) and tuptime. I also keep an /etc/history file on every server as a log of server specific milestones, incidents or issues.
+
 '''
 $ hm
 hm> 882.5h
@@ -63,6 +64,7 @@ Average downtime: 	2m 4s
 
 Current uptime: 	3d 15h 37m 11s  since  10:53:07 25/05/23
 '''
+
 My pulsechain validator disk that is holding the full-synced blockchain data structure is part of an enterprise level high-avalability capable ZFS diskarray that is software RAID1 mirrored among two physical 8TB SSD disks. From the respective pulsechain dataset, a time triggered crontab job is generating regular snapshots in a 10min interval for up to 10 days. Using ZFS snapshots allows you to quickly redirect a new symlink (ln -s) to your mounted pulsedchain root directory in case of an incident such as e.g. a corrupted consensus or execution database. This way, you can rollback the entire validator on the timeline back to a desired point in history (like a time capsule on a filesystem level). For example, rolling back a 1TB blockchain validator takes a couple of seconds using copy-on-write technique rather than hours using conventional tools such as dd, rsync, scp, cp or tar commands.
 5. Monitoring: <update-follows> (currently using MRTG)
 
