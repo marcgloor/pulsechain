@@ -1,11 +1,10 @@
 #!/bin/ksh
+# Gracefully shutdown (SIGTERM), terminate and cleanup the validator and the monitors
 
 cd /mnt/pulsechain/prod
 
-docker stop prysm go-pulse validator
-docker rm prysm go-pulse validator
-
-killall nmon tail > /dev/null 2>&1
+killall nmon tail speedometer > /dev/null 2>&1
+docker stop go-pulse prysm validator
+docker rm go-pulse prysm validator
 docker container prune -f
-
 docker ps -a
