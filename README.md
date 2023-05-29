@@ -1,5 +1,5 @@
 2023/05/14 - first released by Marc O. Gloor <marc dot gloor at u dot nus dot edu>
-$Id: README.md,v 1.2 2023/05/28 15:57:31 root Exp root $
+\$Id: README.md,v 1.2 2023/05/28 15:57:31 root Exp root \$
 
 # README for my pulsechain scripts git repository
 Contact me if you need more support: @go4mark on Telegram -> Marculix. Also check my alumni page: https://marcgloor.github.io/ or my twitter account https://twitter.com/go_marcgloor
