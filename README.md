@@ -34,9 +34,11 @@ I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
 3. 1 General backup HDD disk to run incremental rsync backup rotation & retention management in 4th disk bay
 
 ### Software
+
 ####Operating System
 Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure -> https://www.startech.com/en-ch/hdd/35sat225s3r. I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives.
-#####Execution and Consensus Layer
+
+####Execution and Consensus Layer
 Go-eth execution client, Prysm consenus client and Prysm validator clients are running in docker containers that I manually prune from time to time. I also ensure every once in a while that I pull the latest docker packages by stoping the validator, prune and remove all docker images to enforce the re-downloading of the latest vesions when restarting the node.
 ```
 docker container prune -f
@@ -47,7 +49,8 @@ docker rmi <execution-client> <consensus-client> <validator-client>
 ```
 #### Security
 I stoped all unwanted services on the server, closed the unused porrts and I am running my validator behind a physical router firewall and an additional linux software firewall in detached GNU screen sessions that can be re-attached remotely using screenie, a GNU screen wrapper that I wrote 20 years ago -> https://marcgloor.github.io/screenie.html
-####Disaster Recovery, Rollback and Business Continuity
+
+#### Disaster Recovery, Rollback and Business Continuity
 The goal is Fives Nines high availablility, the lowest MTTR and the highest MTBF. My pulsechain validator disk that is holding the full-synced blockchain data structure is part of an enterprise level high-avalability capable ZFS diskarray that is software RAID1 mirrored among two physical 8TB SSD disks. From the respective pulsechain dataset, a time triggered crontab job is generating regular snapshots in a 10min interval for up to 10 days. Using ZFS snapshots allows you to quickly redirect a new symlink (ln -s) to your mounted pulsedchain root directory in case of an incident such as e.g. a corrupted consensus or execution database. This way, you can rollback the entire validator on the timeline back to a desired point in history (like a time capsule on a filesystem level). For example, rolling back a 1TB blockchain validator takes a couple of seconds using copy-on-write technique rather than hours using conventional tools such as dd, rsync, scp, cp or tar commands.
 
 You should measure and report your historical and statistical real time data of the system with the commands hm (https://marcgloor.github.io/hourmeter.html) and tuptime. I also keep an /etc/history file on every server as a log of server specific milestones, incidents or issues.
@@ -69,11 +72,19 @@ Average downtime:       2m 4s
 Current uptime:         3d 15h 37m 11s  since  10:53:07 25/05/23
 ```
 
-5. Monitoring: <update-follows> (currently using MRTG)
+#### Monitoring: <update-follows> (currently using MRTG)
 
 ### Networking
-1. Failover / BCP: I got a second spare (slave) internet router that is identical to my (master) router
-2. Regular latency checks / Bandwith of 1000 Mbit/s.
-3. Access to a configurable router for firewall, static routes and port-forwarding (even to temporarily activate a DMZ to your validator if needed).
-4. Static IP (I don't have one but I use dynamic DNS and homebuilt scripts to mitigate unforseen effects should my ISP or my router change the IP address (e.g. via DHCP after a lease expired).
+
+#### Failover / BCP
+I got a second spare (slave) internet router that is identical to my (master) router
+
+#### Regular latency checks 
+Bandwith of 1000 Mbit/s. Measure using the tool speedtest. 
+
+#### Routing 
+Access to a configurable router for firewall, static routes and port-forwarding (even to temporarily activate a DMZ to your validator if needed).
+
+#### IP Address
+Static IP (I don't have one but I use dynamic DNS and homebuilt scripts to mitigate unforseen effects should my ISP or my router change the IP address (e.g. via DHCP after a lease expired). I also log my public ip using the attached crontab job (see etc-crontab)
 
