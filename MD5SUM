@@ -1,6 +1,6 @@
 970af4c46c70ce92221b9b80b39a370f  ./etc-crontab
 a0a7c3fff21f2aea3cfa1d0316dd816c  ./.git/description
-ecf10775c3f11032993a24c9d4ad0e85  ./.git/refs/heads/main
+5e787dd6303c421ec6a7afcdd515e2b7  ./.git/refs/heads/main
 ecf10775c3f11032993a24c9d4ad0e85  ./.git/refs/remotes/origin/main
 98b16e0b650190870f1b40bc8f4aec4e  ./.git/refs/remotes/origin/HEAD
 054f9ffb8bfe04a599751cc757226dda  ./.git/hooks/pre-applypatch.sample
@@ -20,7 +20,7 @@ ea587b0fae70333bce92257152996e70  ./.git/hooks/fsmonitor-watchman.sample
 5a76f14c83e4ea1c6baf8473970d882a  ./.git/packed-refs
 036208b4a1ab4a235d75c181e685e5a3  ./.git/info/exclude
 1590a086b1ae284729ae6629d01753ef  ./.git/COMMIT_EDITMSG
-89224c74ceb70f023bcefa87088da54b  ./.git/index
+3168bd5295f98859f9de910fc96de725  ./.git/index
 1bf30d4fd9488bf4b7f964cbe06329dd  ./.git/objects/b5/28d4f1a5357527ebffa2b6adb47fb1587d5f3b
 23eb64ca7900ee821694e28b29211cb6  ./.git/objects/b5/b03c1a7fee7bf6a886d1b37d99b0d8d592f329
 76a4c006d177d35c945dfc4a83be11d5  ./.git/objects/b5/5acb701c73e6ece5e5968e8d82f95124192564
@@ -30,6 +30,7 @@ ea587b0fae70333bce92257152996e70  ./.git/hooks/fsmonitor-watchman.sample
 6762866619cb95a35af87a12337b92f4  ./.git/objects/cf/68536d4ea7ab47170e9f12597c025af2020f5c
 f79fb7cb7fe985cf62b026ec7dd51f30  ./.git/objects/96/4ce5b25d41178226a6446006cee9b3f102989c
 ec3e18804af4fa3b3ae2ca4c08b3264e  ./.git/objects/78/32443fcc06794560bbf3af475bd1d0a610e6ce
+d007b0dabfa96c135ac2d28096b34194  ./.git/objects/78/c76353e87271e784f5e84d0cd7bf2cbf4e7f21
 1c2c535ac59e2005671c46ae9383bab9  ./.git/objects/7b/94dd78ff232434bea9a9b23eec933d9d5b2cf0
 bf0aa3bb08c4126d3065c8244fb121fd  ./.git/objects/53/cfeb6c0e48ea690098d5be5af99d1dfa7ed803
 e6b51ad6fb35391d71a4779f94424b65  ./.git/objects/9f/78103ca217f61820ee7a13ee5ac35a96d13d00
@@ -65,6 +66,7 @@ e0dd253895da4d929e5b436a05a14929  ./.git/objects/ca/6164ff492d0f4289ea9685df514b
 7dca9e2357656b4451890b060828b7df  ./.git/objects/5d/bdac96dec818972cd661d20411147954a1813e
 4fb3464a1bfad5cc474604553db7bf3b  ./.git/objects/30/5f446fc94c13e5b346edf878bae97a04b6b782
 9d6cfcc1c87e88adac4ea26371e1e72e  ./.git/objects/8b/8f57dafffb6fc416ed4ee59f3549c2776c6b46
+96eb8bf656b9fad0e81a9074e3dff8b8  ./.git/objects/6f/7264c3ddd600e960d4f1feb2468b52a640e7da
 8c8bf111341befb14ad79c9e18133a0d  ./.git/objects/6b/92ed155963ca569116749afca8f2075d56392a
 27aba07a44e4e2dc4f9801272d4c176f  ./.git/objects/49/6680cc439570fe78b0e4a7834e735bdc6dfbaf
 e69d7dd8277f167e3630e4ecf4f1d5eb  ./.git/objects/e1/fddcdb8d8104a0e2ca5ed75eb1dd76b8d2b291
@@ -96,6 +98,7 @@ fdd48966784ccf051785c3bc16b786b7  ./.git/objects/65/1bf4822d8ebb5136fb93c5e0d5e1
 acbb3f94022895a3c79c8967f847d117  ./.git/objects/ba/e3afb5bb860c80adf52606e6e2b14184c36fa0
 2c9c53558b0f75c446e31648104b8f7a  ./.git/objects/ef/a5946cf153d74db1cfa9ae8bfb6afd97e8bbf9
 d914875e8a11f58ad1262d9afb727fc9  ./.git/objects/81/d88c0689e93a8ffc8340585f3bb2d7f6993fe3
+ca9489dc298446d4948ba962a9664c5d  ./.git/objects/81/a278f813d8e732842cf08ab5ad0f08a347c594
 0032f62e485df6ac1e9211a26728d15c  ./.git/objects/18/08344db6909b77b1618ac17857d32a8a81d1f6
 a07b55fd4308e23b7a6605a45f17197d  ./.git/objects/18/18ca730694c955dd626c9bfac6d6fbf7e39e00
 670a877477d7600629dd9a6b2e1a3958  ./.git/objects/c2/fa134ce374ff3004acdd4d830307d353531886
@@ -175,6 +178,7 @@ f2e680667ec7914239651ed89e5e2b3c  ./.git/objects/17/64dd9b8d40e3552f8a0babc1dd45
 e984cc4bcda575574c9647e64209e9a1  ./.git/objects/bd/882ffe47ea04cea1026aa52340803ae1789736
 36e91d22f55a21518a1f3542012ee695  ./.git/objects/3f/48dcccf686ae571f32347638faeff2e7f915fd
 1af01747ca5a5ff0d0bd15a354dce68c  ./.git/objects/e9/fecb4920a441902296998aadcc69344c397401
+7735deac6d11464185f1b5f7b8d66481  ./.git/objects/36/c34c192512b804a4dfa0fa1c1bee806847ec30
 1084c2edb6f1e80647c68c08c40cdb11  ./.git/objects/8d/b08d4b3d817587f11628e5c5bc38fff857b390
 611d59609b66fc79d9759664192975fd  ./.git/objects/b4/51d147395977951d5352e369d67278e3a1a619
 37f2a6a4dda2cef173732d023a231e0b  ./.git/objects/b4/725738a40164897dde6da0f9da72207859b2e7
@@ -227,15 +231,16 @@ c7833d56b7024592db364e21b3836339  ./.git/objects/6c/adb4c69558fbc1158e6aaaece261
 9a195fe17b4000fd6d3fb701aaff4dff  ./.git/objects/07/c4a780f34349a2f1b3a40bafc90d36e8f54e89
 3777f9b9d5312e49fc67ac5c4951e615  ./.git/objects/a5/b04940adab596dbe63658edac25ab8ce3267f1
 a97dc372dd473f43820aaf156ec18793  ./.git/objects/f2/acbf3012d9bf07f05508caf0dd2bec66145f03
+d2b5fd7cda684cb549ff01026ccb2bd3  ./.git/objects/dc/856f21b3eaa8350dd97f6c336f4dd7a067f4a6
 ac22b9558af9493dd8bd2f2cbbf12e84  ./.git/objects/dc/89fc510fef7ed3e828a48a5a15a1e3343ce2ae
 eb2e83dd5cdf849230e1279c227b9f92  ./.git/objects/94/bf412b3bffe934418ef20ed0f03dd401ca75e9
 0a1641adac1105f3707a5015bd465e52  ./.git/objects/5a/9acfe665bf9cf9dc43173ed3b02428a89896e2
 4348bf3b7cba7faa5ecf157402fd46c0  ./.git/objects/5a/92ac7bfed5ff32ccb6115aa1394f6f35f12ce4
 cc4cef969af114d802d6e99680a316a6  ./.git/objects/2f/90b20e20a479691dbaebeb9e1443cdffaa981f
-6fcbb33813a8b5ed5686e8504a507073  ./.git/logs/HEAD
+5523413a5af7feeb384cee11cade5075  ./.git/logs/HEAD
 a33d861f50b4ff287e5392817e969877  ./.git/logs/refs/remotes/origin/HEAD
 dd039592d6733083d451ea3505b87158  ./.git/logs/refs/remotes/origin/main
-6fcbb33813a8b5ed5686e8504a507073  ./.git/logs/refs/heads/main
+5523413a5af7feeb384cee11cade5075  ./.git/logs/refs/heads/main
 e4bca383191a168d0fb5ec4d22eb67b2  ./.git/config
 cf7dd3ce51958c5f13fece957cc417fb  ./.git/HEAD
 c4b8b184779069151d34fb14bb591054  ./.git/FETCH_HEAD
@@ -243,19 +248,18 @@ cde8bde887f8a9875cbc10d821360b2b  ./firewall.sh
 1ebbd3e34237af26da5dc08a4e440464  ./LICENSE
 9a612127286b7087faf85f98313eb5b3  ./prysm-beacon.sh
 45bc19de5d0966b385c2de703a38e26d  ./prysm-validator.sh
-639f0c359b3cdd27ec0d18a6d5fb9703  ./README.md
+c0696a8313d2e8fa31c2912db39afb0e  ./README.md
 37754e1a0e3cd5c3e929a4cd32504cde  ./selftest.sh
 56132d5aeefbdcc72d10ee737d174503  ./start-validator.sh
 5f5e87eb9f724ca272c75e8416022b6f  ./nmon.png
 b83829ab46f25249b4e22f3e31b66537  ./issue
-3dcf7911fdf1c5690bde53bb1d01b6ad  ./ChangeLog
+8ac5a768baa67ed7ce19605c2b100944  ./ChangeLog
 9da1c7a772697f076d7a6239c257c385  ./issue.net
 550fa9c8f5e93dc57e30a4a2f71f9722  ./.make
 e42bce55c9e3a1c043b7a20157acd4ff  ./.ChangeLog.sh
 46a5c612dd873bce3f94ac89f982e2a1  ./Pulsechain_Firewall_Screenshot.png
 7d6df10aa40b2ab29fe0520ec12beea4  ./rotmon.sh
 b042a2091762aab627ea7a4b0a75cbcf  ./rsync365.sh
-15d93e0a0f97be2b1db679fb79f56a67  ./.README.md.swp
 9a88e4509a3b2901024260b05646e575  ./.md5sum.sh
 3e3a533e3566b20f8755a98cee2a8c3f  ./zfs-monitor.sh
 c1f93abf95d56f5c594ce2c718748e3b  ./go-pulse.sh
@@ -264,5 +268,5 @@ c5c9f645c771d372ff7c8bcf77f5ecde  ./COPYING
 e450a18367bee96cc92e101e3101c45c  ./stop-validator.sh
 d4e715f1af254233db0dcbb12092bcc4  ./pulsechain-console_etcissue.net.png
 219a4c382155e42aeb346ecf184d7ac1  ./README.md,v
-535226521a984dab70d9c21f674dc5e9  ./MD5SUM
+18fa3cb7caa92e87072a77488847cb83  ./MD5SUM
 941cc82136fff1499401195578f02ca7  ./prysm-key-import.sh
