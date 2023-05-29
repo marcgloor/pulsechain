@@ -1,5 +1,4 @@
 `Id: README.md,v 1.2 2023/05/28 15:57:31 root Exp root $`
-2023/05/14 - first released by Marc O. Gloor <marc dot gloor at u dot nus dot edu> 
 
 # README for my pulsechain scripts git repository
 Contact me if you need more support: @go4mark on Telegram --> Marculix. Also check my alumni page: https://marcgloor.github.io/ or my twitter account https://twitter.com/go_marcgloor
@@ -30,9 +29,9 @@ You also need to gain networking and security skills, knowing how to protect you
 ## Pulsechain Validator High Availability Design
 ### Hardware
 I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
-- 2 500GB hardware RAID1 mirrored operating system EXT4 SSD disks in 1st disk bay
-- 2 8TB Pulsechain validator and software RAID1 mirrored SSD disks in 2nd & 3rd disk bay
-- 1 General backup HDD disk to run incremental rsync backup rotation & retention management in 4th disk bay
+- Two 500GB hardware RAID1 mirrored operating system EXT4 SSD disks in 1st disk bay
+- Two 8TB Pulsechain validator and software RAID1 mirrored SSD disks in 2nd & 3rd disk bay
+- One general backup HDD to run incremental rsync backup rotation & retention management in 4th disk bay
 
 ### Software
 
