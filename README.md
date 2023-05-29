@@ -35,10 +35,10 @@ I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
 
 ### Software
 
-####Operating System
+#### Operating System
 Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure -> https://www.startech.com/en-ch/hdd/35sat225s3r. I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives.
 
-####Execution and Consensus Layer
+#### Execution and Consensus Layer
 Go-eth execution client, Prysm consenus client and Prysm validator clients are running in docker containers that I manually prune from time to time. I also ensure every once in a while that I pull the latest docker packages by stoping the validator, prune and remove all docker images to enforce the re-downloading of the latest vesions when restarting the node.
 ```
 docker container prune -f
@@ -71,8 +71,8 @@ Average downtime:       2m 4s
 
 Current uptime:         3d 15h 37m 11s  since  10:53:07 25/05/23
 ```
-
-#### Monitoring: <update-follows> (currently using MRTG)
+#### Monitoring:
+<update-follows> (currently using MRTG) and a pulsechain rotation monitor (see rotmon.sh)
 
 ### Networking
 
