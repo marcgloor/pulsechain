@@ -15,12 +15,12 @@ Contact me if you need more support: @go4mark on Telegram -> Marculix. Also chec
 https://github.com/marcgloor/pulsechain/assets/41461000/4f1c0c7f-e0de-473a-90c6-41901d449d29
 
 ## Target audience
-This pulsechain validator archive is NOT dependent or based on any fancy 3rd party installation scripts and primarily useful if you run your validators on headless servers remotely administered usings ssh/screen (on-premise or cloud). This is neither a beginners level pulsechain validator archive nor a entry level set of instructions on howto run validator nodes. This page might be useful for sysadmins and operators of pulsechain nodes with advanced Linux skills and the aim to iprove and tweak their servers.
+This pulsechain validator archive is NOT dependent or based on any fancy 3rd party installation scripts and primarily useful if you run your validators on headless servers remotely administered using ssh/screen (on-premise or cloud). This is neither a beginners level pulsechain validator archive nor a entry level set of instructions on howto setup or run validator nodes. This page might be useful for sysadmins and operators of pulsechain nodes with advanced Linux skills and the aim to improve and tweak their servers.
 
 ## General Remarks
-If you intend to become a Pulsechain validator, wisely consider your ambitions. Becoming a pulsechain validator is imperative for building up a sustainable and stable pulsechain blockchain infrastructure.
+If you intend to become a Pulsechain validator, wisely consider your plans. Becoming a pulsechain validator is imperative for building up a sustainable and stable pulsechain blockchain infrastructure. It does come with substantial risks.
 
-Don't play around on Pulsechain mainnet with validators if you qualify your Linux skills entry level. Do not execute install scripts and think that's all you need to run a validator. You will lose money. In order to protect your staked funds on pulsechain mainnet, download respective HOWTOS, Manuals and purchase relevant books. Wiesely test on pulsechain testnet prior to deploy on mainnet and connect yourself with your pulsechain developers peer-group as well in telegram & discord.
+Don't play around on Pulsechain mainnet if you qualify your Linux skills entry level. Do not execute install scripts and think that's all you need to run a validator. **You will lose money**. In order to protect your staked funds on pulsechain mainnet, download respective HOWTOS, Manuals and purchase relevant books. Wiesely test on pulsechain testnet prior to deploy on mainnet and connect yourself with your pulsechain developers peer-group as well in telegram & discord.
 
 Nobody want to see pulsechain validators that are not capable of bringing back their nodes after facing minor issues. Note that you need to be skilled in hardware and software managemenet, in particular Linux system administration and engineering, redundancy management and system automation, especially relevant if you run into issues and incidents on mainnet. Learn everything relevant about journaling and copy-on-write filesystems for software RAID management and snapshots.
 
