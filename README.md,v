@@ -1,9 +1,14 @@
-head	1.5;
+head	1.6;
 access;
 symbols;
 locks; strict;
 comment	@# @;
 
+
+1.6
+date	2023.09.27.07.28.10;	author root;	state Exp;
+branches;
+next	1.5;
 
 1.5
 date	2023.09.27.07.23.20;	author root;	state Exp;
@@ -36,14 +41,12 @@ desc
 @
 
 
-1.5
+1.6
 log
 @*** empty log message ***
 @
 text
-@`Id: README.md,v 1.2 2023/05/28 15:57:31 root Exp root $`
-
-# README for my pulsechain scripts git repository
+@# README for my pulsechain scripts git repository
 Contact me if you need more support: @@go4mark on Telegram --> Marculix. Also check my alumni page: https://marcgloor.github.io/ or my twitter account https://twitter.com/go_marcgloor
 
 ## Pulsechain Operations / Screenie demo & Pulsechain firewall
@@ -131,6 +134,17 @@ Access to a configurable router for firewall, static routes and port-forwarding 
 
 #### IP Address
 Static IP (I don't have one but I use dynamic DNS and homebuilt scripts to mitigate unforseen effects should my ISP or my router change the IP address (e.g. via DHCP after a lease expired). I also log my public ip using the attached crontab job (see etc-crontab)
+
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@a0 2
+`Id: README.md,v 1.2 2023/05/28 15:57:31 root Exp root $`
 
 @
 
