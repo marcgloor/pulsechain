@@ -1,6 +1,6 @@
 #!/bin/ksh
 # @(#) Pulsechain Validator Secure System Firewall
-# $Id: firewall.sh,v 1.5 2023/05/21 09:11:10 root Exp root $
+# $Id: firewall.sh,v 1.8 2023/09/18 00:43:35 root Exp $
 # 2023/05/15 - redesigned fork for Geth/Prysm based Pulsechain Validator Node
 # 2003/06/08 - written by Marc O. Gloor <marc.gloor@alumni.nus.edu.sg>
 # 
@@ -24,7 +24,7 @@
 # Foundation Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
 #
 # Dependecies:  
-#  ksh, curl, netstat, fail2ban
+#  ksh, curl, netstat (debian pkg net-tools), fail2ban
 # 
 # Add to your systemwide /etc/crontab:
 # firewall restart every 2 odd hours (12 times a day) in order to auto update most recent banlist to firewall
@@ -158,16 +158,18 @@ function ApacheAuthIntruderScan {
 
 # Auth log SSH attackers auto update: Ban failed SSH "Failed password" entries found in auth.log
 function SSHAuthIntruderScan {
- echo "Read System auth.log, identify intruders and populate /etc/banlist..."
+ echo "Read systems auth.log or journal, identify intruders and populate /etc/banlist..."
  cp /etc/banlist/tmp/~banlist.tmp >/dev/null 2>&1
- cat /var/log/auth.log | grep -E 'Failed password'| grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" >> /tmp/~banlist.tmp
- zcat /var/log/auth.log.*.gz | grep -E 'Failed password'| grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" >> /tmp/~banlist.tmp
+ # system with auth.log:
+ # cat /var/log/auth.log | grep -E 'Failed password'| grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" >> /tmp/~banlist.tmp
+ # systems with journalctl:
+ journalctl| grep "Failed password" | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" >> /tmp/~banlist.tmp
  cat /tmp/~banlist.tmp | sort | uniq | sort > /etc/banlist
  sed -i "/$OwnIPscan/d" /etc/banlist
  sed -i "/::1/d" /etc/banlist
- rm /tmp/~banlist.tmp
+ rm /tmp/~banlist.tmp 
  echo "SSH intruder listing /etc/banlist updated."
-}
+} 
 
 # unban fail2ban IP
 function unban_IP {
@@ -185,7 +187,7 @@ function start_firewall {
  echo "Re/starting firewall..."
 
  LOOPBACK_INTERFACE=lo          # Local Loopback
- IP=192.168.1.120               # hardcode your own homenet IP
+ IP=192.168.1.180               # hardcode your own homenet IP
  ANY=0/0                        # Any IP adress
  LOOPBACK=127.0.0.1             # Loopback address range
  CLASS_A=10.0.0.0/8             # reserved class A
@@ -296,7 +298,7 @@ function start_firewall {
  #ufw allow 443/tcp
 
  # Accpet incoming SSH traffic
- ufw allow 44444/tcp 
+ ufw allow 22/tcp 
 
  # Releae Loopback restrictions
  iptables -A INPUT -i $LOOPBACK_INTERFACE -j ACCEPT

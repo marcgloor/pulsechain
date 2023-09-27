@@ -29,14 +29,14 @@ You also need to gain networking and security skills, knowing how to protect you
 ## Pulsechain Validator High Availability Design
 ### Hardware
 I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
-- Two 500GB hardware RAID1 mirrored operating system EXT4 SSD disks in 1st disk bay
-- Two 8TB Pulsechain validator and software RAID1 mirrored SSD disks in 2nd & 3rd disk bay
+- Two 500GB hardware RAID1 mirrored operating system SSD disks (ext4 partitions) in 1st disk bay
+- Two 8TB Pulsechain validator and software RAID1 mirrored SSD disks (zfs partitions) in 2nd & 3rd disk bay
 - One general backup HDD to run incremental rsync backup rotation & retention management in 4th disk bay
 
 ### Software
 
 #### Operating System
-Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure --> https://www.startech.com/en-ch/hdd/35sat225s3r. I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives.
+Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure --> https://www.startech.com/en-ch/hdd/35sat225s3r. I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives. I use Debian as they developed the most reliable package system and they follow the most reliable release politics, apart from that, Debian is the mother of numerous clone distributions.
 
 #### Execution and Consensus Layer
 Go-eth execution client, Prysm consenus client and Prysm validator clients are running in docker containers that I manually prune from time to time. I also ensure every once in a while that I pull the latest docker packages by stoping the validator, prune and remove all docker images to enforce the re-downloading of the latest vesions when restarting the node.
@@ -75,6 +75,7 @@ Current uptime:         3d 15h 37m 11s  since  10:53:07 25/05/23
 <update-follows> (currently using MRTG) and a pulsechain rotation monitor (see rotmon.sh)
 
 ### Networking
+<update-follows>
 
 #### Failover / BCP
 I got a second spare (slave) internet router that is identical to my (master) router

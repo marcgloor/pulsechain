@@ -3,7 +3,7 @@
 echo -n "Performing latency check (y/[n]): "
   read simu
     case "$simu" in
-    y) echo "Bandwith latency check: " ; /usr/bin/speedtest-cli --simple ;;
+    y) echo "Bandwith latency check: " ; /usr/bin/speedtest-cli --simple --secure ;;
     n) echo "Proceeding without bandwith throughput selftest..." ;;
     *) echo "Proceeding without bandwith throughput selftest..." ;;
     esac;
@@ -23,15 +23,19 @@ systemctl list-units -t service |  grep 'systemd-timesyncd.service'
 #echo "System clock synchronization:"
 #timedatectl
 
+# sensors package install lm-sensors, dann sudo modprobe drivetemp
+
+echo 
+
+echo "CPU temperature: " ; sensors | grep -E "Core 0|Core 1"
+
 echo
 
-echo "System root disk temperature:"
-hddtemp /dev/sda
-
-echo
-
-echo "Backup disk temperature:"
-hddtemp /dev/sdd
+echo "System disk temperatures:"
+echo -n "System root disk (SSD) : " ; sensors |  grep -A 2 "drivetemp-scsi-0-0" | tail -n 1
+echo -n "ZFS pool disk 1 (SSD)  : " ; sensors |  grep -A 2 "drivetemp-scsi-1-0" | tail -n 1
+echo -n "ZFS pool disk 2 (SSD)  : " ; sensors |  grep -A 2 "drivetemp-scsi-2-0" | tail -n 1
+echo -n "System backp disk (HDD): " ; sensors |  grep -A 2 "drivetemp-scsi-3-0" | tail -n 1
 
 echo 
  
