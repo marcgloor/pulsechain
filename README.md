@@ -44,9 +44,9 @@ I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
 ### Software
 
 #### Operating System
-Choose your OS and Linux distribution wisely. No religious distribution war but I personally prefer a Linux distribution that is entreprise datacenter proof such as the Debian stable distribution, they push approx. every 2 year a major releasee to production. I am fine with Ubuntu on my desktop as I noticed they push every 2nd or 3rd day new kernels which is a total no-go on a validator.
+Choose your OS and Linux distribution wisely. I personally prefer a highly stable and not volatile Linux distribution that is entreprise datacenter proof like the [Debian stable Linux](https://www.debian.org/releases) distribution. Debian pushes approx. every 2 year a major releasee to production and regular minor security related fixes that do not need downtime. Downtime is the worst for a validator, you will lose attestations and money if not scheduled and planned accordingly. Why not Ubuntu? I am fine with Ubuntu on my desktop but they push every 2nd or 3rd day new kernels which is a total no-go on a validator.
 
-Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure --> https://www.startech.com/en-ch/hdd/35sat225s3r. I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives. I use Debian as they developed the most reliable package system and they follow the most reliable release politics, apart from that, Debian is the mother of numerous clone distributions.
+One of my validtor is based on Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" [hardware RAID1 mirrored enclosure](https://www.startech.com/en-ch/hdd/35sat225s3r). I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives. I use Debian as they developed the most reliable package system and they follow the most reliable release politics, apart from that, Debian is the mother of numerous clone distributions.
 
 Your system time need to be ideally synced against an NTP timeserver. Howto setup your timesync is widely documented. A short summary as follows:
 ```
@@ -59,7 +59,7 @@ testing   : timedatectl timesync-status
 ```
 Ensure when fine-tuning that timesyncd is up & running and in best-case synced against a Stratum 1 server that you find at ntppool.org (timedatectl timesync-status). Some admins also forget to open their incoming NTP port for UDP after setting their rules to denying incoming traffic (also missed in some of the validator install scripts that are floating around). In large datacenters, hardware clocks are set to UTC which just makes sense in distributed networks. An unacceptable NTP offset value in milliseconds is any value that falls outside the range of -128ms to 127ms. I currently see on one of my validator the offset is 1.15ms which is great. 
 
-You should also easure and report your historical and statistical real time data of the system with the commands hm (https://marcgloor.github.io/hourmeter.html) and tuptime. I also keep an /etc/history file on every server as a log of server specific milestones, incidents or issues.
+You should also easure and report your historical and statistical real time data of the system with the linux commands [hm](https://marcgloor.github.io/hourmeter.html) and [tuptime](https://packages.debian.org/stable/tuptime). I also keep an /etc/history file on every server as a log of server specific milestones, incidents or issues.
 ```
 $ hm
 hm> 882.5h
@@ -77,8 +77,9 @@ Average downtime:       2m 4s
 
 Current uptime:         3d 15h 37m 11s  since  10:53:07 25/05/23
 ```
+Packages needed to use the scripts in my repository: dialog speedometer bashtop iptraf-ng nmon net-tools ntpdate fail2ban ufw rcs ufw tuptime ksh curl net-tools systemd-timesyncd.
 #### Execution and Consensus Layer
-Go-eth execution client, Prysm consenus client and Prysm validator clients are running in docker containers that I manually prune from time to time. I also ensure every once in a while that I pull the latest docker packages by stoping the validator, prune and remove all docker images to enforce the re-downloading of the latest vesions when restarting the node.
+[Go-eth execution client](go-pulse.sh), [Prysm consenus client](prysm-beacon.sh) and [Prysm validator client](prysm-validator.sh) are running in GNU Screen held docker containers that I manually [prune](prune-and-purge.sh) from time to time. I also ensure every once in a while that I pull the latest docker packages by stoping the validator, prune and remove all docker images to enforce the re-downloading of the latest vesions when restarting the node.
 ```
 docker container prune -f
 docker stop go-pulse <execution-client> <consensus-client> <validator-client>
@@ -91,7 +92,7 @@ You will find in the github repo a [firewall.sh](firewall.sh) script which gives
 
 If you run a validator in the public cloud, do not leave your keystore.json files on the server. It contains your encrypted private keys. Keep backups of your keystore files in an encrypted offline cold storage (e.g. in a gpg file) or secure it through a hardware wallet.
 
-I also run my validator behind a physical router firewall and an additional linux software firewall in detached GNU screen sessions that can be re-attached remotely using screenie, a GNU screen wrapper that I wrote 20 years ago --> https://marcgloor.github.io/screenie.html
+I also run my validator behind a physical router firewall and an additional linux software firewall in detached GNU screen sessions that can be re-attached remotely using [screenie](https://marcgloor.github.io/screenie.html), a GNU screen wrapper that I wrote 20 years ago.
 
 #### Disaster Recovery, Rollback and Business Continuity
 The goal is Fives Nines high availablility, the lowest MTTR and the highest MTBF. My pulsechain validator disk that is holding the full-synced blockchain data structure is part of an enterprise level high-avalability capable ZFS diskarray that is software RAID1 mirrored among two physical 8TB SSD disks. From the respective pulsechain dataset, a time triggered crontab job is generating regular snapshots in a 10min interval for up to 10 days. Using ZFS snapshots allows you to quickly redirect a new symlink (ln -s) to your mounted pulsedchain root directory in case of an incident such as e.g. a corrupted consensus or execution database. This way, you can rollback the entire validator on the timeline back to a desired point in history (like a time capsule on a filesystem level). For example, rolling back a 1TB blockchain validator takes a couple of seconds using copy-on-write technique rather than hours using conventional tools such as dd, rsync, scp, cp or tar commands.
