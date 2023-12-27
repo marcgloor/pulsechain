@@ -1,5 +1,5 @@
 # README for my pulsechain scripts git repository
-Contact me if you need more support: @go4mark on Telegram --> Marculix. Also check my page: https://marcgloor.github.io/ or my twitter account https://twitter.com/go_marcgloor. The pulsechain validator demo can be found here: https://www.youtube.com/watch?v=9654UtYcnE8
+Contact me if you need more support: @go4mark on Telegram (username: Marculix). Also check [my website](https://marcgloor.github.io) every once in a while for updates or my [twitter account/X](https://twitter.com/go_marcgloor). Also checkout my older pulsechain validator [youtube demo](https://www.youtube.com/watch?v=9654UtYcnE8) (older version without the interactive console yet).
 
 ## Pulsechain Operations / Screenie demo & Pulsechain firewall
 
@@ -22,7 +22,7 @@ It's main use was for military, fluid dynamics or atmospherical sciences. I just
 
 Let's say ~45k validators times avg. 5 TFLOP (rough ballpark) equals 225 PFLOPS overall pulsechain validator power. 
 
-Today's (Oct 23) Pulsechain validator processing power would be equal to the massive performance of the 4th fastest supercomputer on earth (http://top500.org). 
+Today's (Oct 23) Pulsechain validator processing power would be equal to the massive performance of the 4th fastest supercomputer on earth, checkout [top500.org](http://top500.org). 
 
 ## General Remarks
 If you intend to become a Pulsechain validator, wisely consider your plans. Becoming a pulsechain validator is imperative for building up a sustainable and stable pulsechain blockchain infrastructure. It does come with substantial risks.
