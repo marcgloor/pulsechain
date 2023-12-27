@@ -87,7 +87,7 @@ docker system prune -a
 docker rmi <execution-client> <consensus-client> <validator-client>
 ```
 #### Security
-You will find in the github repo a firewall.sh script which gives you an idea how to lockdown your pulsechain validator node. Also stop and disable all unwanted services on the server and close unused ports. 
+You will find in the github repo a [firewall.sh](firewall.sh) script which gives you an idea how to lockdown your pulsechain validator node. Also stop and disable all unwanted services on the server and close unused ports. 
 
 If you run a validator in the public cloud, do not leave your keystore.json files on the server. It contains your encrypted private keys. Keep backups of your keystore files in an encrypted offline cold storage (e.g. in a gpg file) or secure it through a hardware wallet.
 
