@@ -1,9 +1,14 @@
-head	1.15;
+head	1.16;
 access;
 symbols;
 locks; strict;
 comment	@# @;
 
+
+1.16
+date	2023.12.27.20.19.08;	author root;	state Exp;
+branches;
+next	1.15;
 
 1.15
 date	2023.12.27.20.08.27;	author root;	state Exp;
@@ -86,9 +91,9 @@ desc
 @
 
 
-1.15
+1.16
 log
-@*** empty log message ***
+@supercomputing stuff amended
 @
 text
 @# README for my pulsechain scripts git repository
@@ -110,12 +115,15 @@ https://github.com/marcgloor/pulsechain/assets/41461000/4f1c0c7f-e0de-473a-90c6-
 This pulsechain validator archive is NOT dependent or based on any 3rd party installation scripts and primarily useful if you run your validators on headless servers remotely administered using ssh/screen (on-premise or cloud). This is neither a beginners level pulsechain validator archive nor a entry level set of instructions on howto setup or run validator nodes. This page might be useful for sysadmins and operators of pulsechain nodes with advanced Linux skills and the aim to improve and tweak their servers. 
 
 ## Why Pulsechain?
-Fun fact from the Pulsechain validator community: The fastest supercomputer on earth in 1988, CRAY's Y-MP delivered as little as 2.1 GFLOPS, its weight was ~650kg, liquid cooled and it consumed approx. 800 times the power of a modern fridge.
-It's main use was for military, fluid dynamics or atmospherical sciences. I just measured the performance of my own bare-metal pulsechain validator which was 5.4 TFLOPS. Clearly we validators all strongly contribute to the growth of a massive blockchain!
+Fun fact from the Pulsechain validator community: 
+Today's (Oct 23) global Pulsechain validator processing power would be equal to the massive performance of the 4th fastest supercomputer on earth, listed on [top500.org](http://top500.org). 
 
-Let's say ~45k validators times avg. 5 TFLOP (rough ballpark) equals 225 PFLOPS overall pulsechain validator power. 
+You can measure the peak floatingpoint performance of your validator system using my modified [Supercomputing Benchmark for Linux](floatingpoint.html). 
 
-Today's (Oct 23) Pulsechain validator processing power would be equal to the massive performance of the 4th fastest supercomputer on earth, checkout [top500.org](http://top500.org). 
+Calculation (rough ballpark)
+The fastest supercomputer on earth in 1988, CRAY's Y-MP delivered as little as 2.1 GFLOPS, its weight was ~650kg, liquid cooled and it consumed approx. 800 times the power of a modern fridge. It's main use was for military, fluid dynamics or atmospherical sciences. I compared the performance of my own bare-metal pulsechain validator which was 5.4 TFLOPS. Clearly we validators all strongly contribute to the growth of a massive blockchain!
+
+Let's assume ~45k validators times avg. 5 TFLOP (rough ballpark) equals 225 PFLOPS overall pulsechain validator power. 
 
 ## General Remarks
 If you intend to become a Pulsechain validator, wisely consider your plans. Becoming a pulsechain validator is imperative for building up a sustainable and stable pulsechain blockchain infrastructure. It does come with substantial risks.
@@ -216,6 +224,24 @@ Access to a configurable router for firewall, static routes and port-forwarding 
 #### IP Address
 Static IP (I don't have one but I use dynamic DNS and homebuilt scripts to mitigate unforseen effects should my ISP or my router change the IP address (e.g. via DHCP after a lease expired). I also log my public IP address using the attached crontab job, see [etc-crontab](etc-crontab) and search for 'Daily IP watchlog'.
 
+@
+
+
+1.15
+log
+@*** empty log message ***
+@
+text
+@d20 2
+a21 2
+Fun fact from the Pulsechain validator community: The fastest supercomputer on earth in 1988, CRAY's Y-MP delivered as little as 2.1 GFLOPS, its weight was ~650kg, liquid cooled and it consumed approx. 800 times the power of a modern fridge.
+It's main use was for military, fluid dynamics or atmospherical sciences. I just measured the performance of my own bare-metal pulsechain validator which was 5.4 TFLOPS. Clearly we validators all strongly contribute to the growth of a massive blockchain!
+d23 1
+a23 1
+Let's say ~45k validators times avg. 5 TFLOP (rough ballpark) equals 225 PFLOPS overall pulsechain validator power. 
+d25 4
+a28 1
+Today's (Oct 23) Pulsechain validator processing power would be equal to the massive performance of the 4th fastest supercomputer on earth, checkout [top500.org](http://top500.org). 
 @
 
 
