@@ -1,9 +1,14 @@
-head	1.12;
+head	1.13;
 access;
 symbols;
 locks; strict;
 comment	@# @;
 
+
+1.13
+date	2023.12.27.08.45.05;	author root;	state Exp;
+branches;
+next	1.12;
 
 1.12
 date	2023.12.27.08.41.29;	author root;	state Exp;
@@ -71,13 +76,13 @@ desc
 @
 
 
-1.12
+1.13
 log
-@header improved
+@header updates
 @
 text
 @# README for my pulsechain scripts git repository
-Contact me if you need more support: @@go4mark on Telegram (username: Marculix). Also check [my website](https://marcgloor.github.io) every once in a while for updates or my [twitter account/X](https://twitter.com/go_marcgloor). Also checkout my older pulsechain validator [youtube demo](https://www.youtube.com/watch?v=9654UtYcnE8) (older version without the interactive console yet).
+Contact me if you need more support: @@go4mark on Telegram (username: Marculix) or b e-mail that you find on [my website](https://marcgloor.github.io). Also checkout my [twitter account/X](https://twitter.com/go_marcgloor) and my older pulsechain validator [youtube demo](https://www.youtube.com/watch?v=9654UtYcnE8) (note: demo does not show the fancy interactive console yet).
 
 ## Pulsechain Operations / Screenie demo & Pulsechain firewall
 
@@ -193,6 +198,17 @@ Access to a configurable router for firewall, static routes and port-forwarding 
 #### IP Address
 Static IP (I don't have one but I use dynamic DNS and homebuilt scripts to mitigate unforseen effects should my ISP or my router change the IP address (e.g. via DHCP after a lease expired). I also log my public ip using the attached crontab job (see etc-crontab)
 
+@
+
+
+1.12
+log
+@header improved
+@
+text
+@d2 1
+a2 1
+Contact me if you need more support: @@go4mark on Telegram (username: Marculix). Also check [my website](https://marcgloor.github.io) every once in a while for updates or my [twitter account/X](https://twitter.com/go_marcgloor). Also checkout my older pulsechain validator [youtube demo](https://www.youtube.com/watch?v=9654UtYcnE8) (older version without the interactive console yet).
 @
 
 
