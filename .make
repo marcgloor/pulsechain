@@ -1,5 +1,4 @@
 #!/bin/sh
-#git add --all .
 git add --all -- :!/.git
 ./.ChangeLog.sh
 ./.md5sum.sh
