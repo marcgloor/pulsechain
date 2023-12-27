@@ -1,2 +1,2 @@
 #!/bin/sh
-find . -type f -exec md5sum {} \; > MD5SUM
+find . -type f -not -path "./.*" -exec md5sum {} \; > MD5SUM
