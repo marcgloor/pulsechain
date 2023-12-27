@@ -20,7 +20,7 @@ This pulsechain validator archive is NOT dependent or based on any 3rd party ins
 Fun fact from the Pulsechain validator community: 
 Today's (Oct 23) global Pulsechain validator processing power would be equal to the massive performance of the 4th fastest supercomputer on earth, listed on [top500.org](http://top500.org). 
 
-You can measure the peak floatingpoint performance of your validator system using my modified [Supercomputing Benchmark for Linux](floatingpoint.html). 
+You can measure the peak floatingpoint performance of your validator system using my modified [Supercomputing Benchmark for Linux](https://marcgloor.github.io/floatingpoint.html). 
 
 Calculation (rough ballpark)
 The fastest supercomputer on earth in 1988, CRAY's Y-MP delivered as little as 2.1 GFLOPS, its weight was ~650kg, liquid cooled and it consumed approx. 800 times the power of a modern fridge. It's main use was for military, fluid dynamics or atmospherical sciences. I compared the performance of my own bare-metal pulsechain validator which was 5.4 TFLOPS. Clearly we validators all strongly contribute to the growth of a massive blockchain!
