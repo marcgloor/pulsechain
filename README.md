@@ -44,6 +44,8 @@ I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
 ### Software
 
 #### Operating System
+Choose your OS and Linux distribution wisely. No religious distribution war but I personally prefer a Linux distribution that is entreprise datacenter proof such as the Debian stable distribution, they push approx. every 2 year a major releasee to production. I am fine with Ubuntu on my desktop as I noticed they push every 2nd or 3rd day new kernels which is a total no-go on a validator.
+
 Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure --> https://www.startech.com/en-ch/hdd/35sat225s3r. I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives. I use Debian as they developed the most reliable package system and they follow the most reliable release politics, apart from that, Debian is the mother of numerous clone distributions.
 
 Your system time need to be ideally synced against an NTP timeserver. Howto setup your timesync is widely documented. A short summary as follows:
@@ -85,7 +87,11 @@ docker system prune -a
 docker rmi <execution-client> <consensus-client> <validator-client>
 ```
 #### Security
-I stoped all unwanted services on the server, closed the unused porrts and I am running my validator behind a physical router firewall and an additional linux software firewall in detached GNU screen sessions that can be re-attached remotely using screenie, a GNU screen wrapper that I wrote 20 years ago --> https://marcgloor.github.io/screenie.html
+You will find in the github repo a firewall.sh script which gives you an idea how to lockdown your pulsechain validator node. Also stop and disable all unwanted services on the server and close unused ports. 
+
+If you run a validator in the public cloud, do not leave your keystore.json files on the server. It contains your encrypted private keys. Keep backups of your keystore files in an encrypted offline cold storage (e.g. in a gpg file) or secure it through a hardware wallet.
+
+I also run my validator behind a physical router firewall and an additional linux software firewall in detached GNU screen sessions that can be re-attached remotely using screenie, a GNU screen wrapper that I wrote 20 years ago --> https://marcgloor.github.io/screenie.html
 
 #### Disaster Recovery, Rollback and Business Continuity
 The goal is Fives Nines high availablility, the lowest MTTR and the highest MTBF. My pulsechain validator disk that is holding the full-synced blockchain data structure is part of an enterprise level high-avalability capable ZFS diskarray that is software RAID1 mirrored among two physical 8TB SSD disks. From the respective pulsechain dataset, a time triggered crontab job is generating regular snapshots in a 10min interval for up to 10 days. Using ZFS snapshots allows you to quickly redirect a new symlink (ln -s) to your mounted pulsedchain root directory in case of an incident such as e.g. a corrupted consensus or execution database. This way, you can rollback the entire validator on the timeline back to a desired point in history (like a time capsule on a filesystem level). For example, rolling back a 1TB blockchain validator takes a couple of seconds using copy-on-write technique rather than hours using conventional tools such as dd, rsync, scp, cp or tar commands.
