@@ -9,5 +9,5 @@ docker run \
   --wallet-dir=/blockchain/consensus/validator \
   --wallet-password-file=/blockchain/password.txt \
   --datadir=/blockchain/consensus \
-  --suggested-fee-recipient=<your-public-eth-pulsechain-wallet-address-here> \
-  --graffiti <your-tag-here>
+  --graffiti "Engineered by Marculix at marcgloor.github.io" \
+  --suggested-fee-recipient=<your-walled-addres-here> \

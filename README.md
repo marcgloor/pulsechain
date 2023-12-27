@@ -1,9 +1,11 @@
 # README for my pulsechain scripts git repository
-Contact me if you need more support: @go4mark on Telegram --> Marculix. Also check my alumni page: https://marcgloor.github.io/ or my twitter account https://twitter.com/go_marcgloor. The pulsechain validator demo can be found here: https://www.youtube.com/watch?v=9654UtYcnE8
+Contact me if you need more support: @go4mark on Telegram --> Marculix. Also check my page: https://marcgloor.github.io/ or my twitter account https://twitter.com/go_marcgloor. The pulsechain validator demo can be found here: https://www.youtube.com/watch?v=9654UtYcnE8
 
 ## Pulsechain Operations / Screenie demo & Pulsechain firewall
 
 ![Console](https://github.com/marcgloor/pulsechain/blob/main/pulsechain-console_etcissue.net.png "Pulsechain agetty console banner")
+
+![Console2](https://github.com/marcgloor/pulsechain/blob/main/validator-console.png "Pulsechain Validator Console")
 
 ![Firewall](https://github.com/marcgloor/pulsechain/blob/main/Pulsechain_Firewall_Screenshot.png "Pulsechain Validator Firewall")
 
@@ -12,7 +14,15 @@ Contact me if you need more support: @go4mark on Telegram --> Marculix. Also che
 https://github.com/marcgloor/pulsechain/assets/41461000/4f1c0c7f-e0de-473a-90c6-41901d449d29
 
 ## Target audience
-This pulsechain validator archive is NOT dependent or based on any fancy 3rd party installation scripts and primarily useful if you run your validators on headless servers remotely administered using ssh/screen (on-premise or cloud). This is neither a beginners level pulsechain validator archive nor a entry level set of instructions on howto setup or run validator nodes. This page might be useful for sysadmins and operators of pulsechain nodes with advanced Linux skills and the aim to improve and tweak their servers. 
+This pulsechain validator archive is NOT dependent or based on any 3rd party installation scripts and primarily useful if you run your validators on headless servers remotely administered using ssh/screen (on-premise or cloud). This is neither a beginners level pulsechain validator archive nor a entry level set of instructions on howto setup or run validator nodes. This page might be useful for sysadmins and operators of pulsechain nodes with advanced Linux skills and the aim to improve and tweak their servers. 
+
+## Why Pulsechain?
+Fun fact from the Pulsechain validator community: The fastest supercomputer on earth in 1988, CRAY's Y-MP delivered as little as 2.1 GFLOPS, its weight was ~650kg, liquid cooled and it consumed approx. 800 times the power of a modern fridge.
+It's main use was for military, fluid dynamics or atmospherical sciences. I just measured the performance of my own bare-metal pulsechain validator which was 5.4 TFLOPS. Clearly we validators all strongly contribute to the growth of a massive blockchain!
+
+Let's say ~45k validators times avg. 5 TFLOP (rough ballpark) equals 225 PFLOPS overall pulsechain validator power. 
+
+Today's (Oct 23) Pulsechain validator processing power would be equal to the massive performance of the 4th fastest supercomputer on earth (http://top500.org). 
 
 ## General Remarks
 If you intend to become a Pulsechain validator, wisely consider your plans. Becoming a pulsechain validator is imperative for building up a sustainable and stable pulsechain blockchain infrastructure. It does come with substantial risks.
@@ -36,22 +46,18 @@ I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
 #### Operating System
 Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" hardware RAID1 mirrored enclosure --> https://www.startech.com/en-ch/hdd/35sat225s3r. I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives. I use Debian as they developed the most reliable package system and they follow the most reliable release politics, apart from that, Debian is the mother of numerous clone distributions.
 
-#### Execution and Consensus Layer
-Go-eth execution client, Prysm consenus client and Prysm validator clients are running in docker containers that I manually prune from time to time. I also ensure every once in a while that I pull the latest docker packages by stoping the validator, prune and remove all docker images to enforce the re-downloading of the latest vesions when restarting the node.
+Your system time need to be ideally synced against an NTP timeserver. Howto setup your timesync is widely documented. A short summary as follows:
 ```
-docker container prune -f
-docker stop go-pulse <execution-client> <consensus-client> <validator-client>
-docker rm go-pulse <execution-client> <consensus-client> <validator-client>
-docker system prune -a
-docker rmi <execution-client> <consensus-client> <validator-client>
+systemd-timesyncd (simple NTP system client)
+systemctl list-units -t service | grep systemd-timesyncd.service
+vi /etc/systemd/timesyncd.conf (NTP server, check https://www.ntppool.org, use main and fallback servers)
+restarting: systemctl restart systemd-timesyncd.service
+cfg check : timedatectl show-timesync --all
+testing   : timedatectl timesync-status 
 ```
-#### Security
-I stoped all unwanted services on the server, closed the unused porrts and I am running my validator behind a physical router firewall and an additional linux software firewall in detached GNU screen sessions that can be re-attached remotely using screenie, a GNU screen wrapper that I wrote 20 years ago --> https://marcgloor.github.io/screenie.html
+Ensure when fine-tuning that timesyncd is up & running and in best-case synced against a Stratum 1 server that you find at ntppool.org (timedatectl timesync-status). Some admins also forget to open their incoming NTP port for UDP after setting their rules to denying incoming traffic (also missed in some of the validator install scripts that are floating around). In large datacenters, hardware clocks are set to UTC which just makes sense in distributed networks. An unacceptable NTP offset value in milliseconds is any value that falls outside the range of -128ms to 127ms. I currently see on one of my validator the offset is 1.15ms which is great. 
 
-#### Disaster Recovery, Rollback and Business Continuity
-The goal is Fives Nines high availablility, the lowest MTTR and the highest MTBF. My pulsechain validator disk that is holding the full-synced blockchain data structure is part of an enterprise level high-avalability capable ZFS diskarray that is software RAID1 mirrored among two physical 8TB SSD disks. From the respective pulsechain dataset, a time triggered crontab job is generating regular snapshots in a 10min interval for up to 10 days. Using ZFS snapshots allows you to quickly redirect a new symlink (ln -s) to your mounted pulsedchain root directory in case of an incident such as e.g. a corrupted consensus or execution database. This way, you can rollback the entire validator on the timeline back to a desired point in history (like a time capsule on a filesystem level). For example, rolling back a 1TB blockchain validator takes a couple of seconds using copy-on-write technique rather than hours using conventional tools such as dd, rsync, scp, cp or tar commands.
-
-You should measure and report your historical and statistical real time data of the system with the commands hm (https://marcgloor.github.io/hourmeter.html) and tuptime. I also keep an /etc/history file on every server as a log of server specific milestones, incidents or issues.
+You should also easure and report your historical and statistical real time data of the system with the commands hm (https://marcgloor.github.io/hourmeter.html) and tuptime. I also keep an /etc/history file on every server as a log of server specific milestones, incidents or issues.
 ```
 $ hm
 hm> 882.5h
@@ -69,6 +75,21 @@ Average downtime:       2m 4s
 
 Current uptime:         3d 15h 37m 11s  since  10:53:07 25/05/23
 ```
+#### Execution and Consensus Layer
+Go-eth execution client, Prysm consenus client and Prysm validator clients are running in docker containers that I manually prune from time to time. I also ensure every once in a while that I pull the latest docker packages by stoping the validator, prune and remove all docker images to enforce the re-downloading of the latest vesions when restarting the node.
+```
+docker container prune -f
+docker stop go-pulse <execution-client> <consensus-client> <validator-client>
+docker rm go-pulse <execution-client> <consensus-client> <validator-client>
+docker system prune -a
+docker rmi <execution-client> <consensus-client> <validator-client>
+```
+#### Security
+I stoped all unwanted services on the server, closed the unused porrts and I am running my validator behind a physical router firewall and an additional linux software firewall in detached GNU screen sessions that can be re-attached remotely using screenie, a GNU screen wrapper that I wrote 20 years ago --> https://marcgloor.github.io/screenie.html
+
+#### Disaster Recovery, Rollback and Business Continuity
+The goal is Fives Nines high availablility, the lowest MTTR and the highest MTBF. My pulsechain validator disk that is holding the full-synced blockchain data structure is part of an enterprise level high-avalability capable ZFS diskarray that is software RAID1 mirrored among two physical 8TB SSD disks. From the respective pulsechain dataset, a time triggered crontab job is generating regular snapshots in a 10min interval for up to 10 days. Using ZFS snapshots allows you to quickly redirect a new symlink (ln -s) to your mounted pulsedchain root directory in case of an incident such as e.g. a corrupted consensus or execution database. This way, you can rollback the entire validator on the timeline back to a desired point in history (like a time capsule on a filesystem level). For example, rolling back a 1TB blockchain validator takes a couple of seconds using copy-on-write technique rather than hours using conventional tools such as dd, rsync, scp, cp or tar commands.
+
 #### Monitoring:
 <update-follows> (currently using MRTG) and a pulsechain rotation monitor (see rotmon.sh)
 

@@ -1,35 +1,38 @@
 # /etc/crontab: system-wide crontab
+# additional Pulsechain related cronjobs, add to your /etc/crontab
+# Change path of scripts if necessary
 
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+# Weekly firewall restart mid of the week at 12pm
+0 12 * * 3 root /shell/firewall.sh -restart >/dev/null 2>&1
 
-# Example of job definition:
-# .---------------- minute (0 - 59)
-# |  .------------- hour (0 - 23)
-# |  |  .---------- day of month (1 - 31)
-# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
-# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
-# |  |  |  |  |
-# *  *  *  *  * user-name command to be executed
-17 *	* * *	root	cd / && run-parts --report /etc/cron.hourly
-25 6	* * *	root	test -x /usr/sbin/anacron || { cd / && run-parts --report /etc/cron.daily; }
-47 6	* * 7	root	test -x /usr/sbin/anacron || { cd / && run-parts --report /etc/cron.weekly; }
-52 6	1 * *	root	test -x /usr/sbin/anacron || { cd / && run-parts --report /etc/cron.monthly; }
-
-# firewall restart ever 2 odd hours (12 times a day) in order to add update banlist to firewall
-0 1-23/2 * * * root /shell/firewall.sh -restart >/dev/null 2>&1
+# Deactivate firewall for network rules testing/bug-fixing every 3min (only uncomment for testing purposes)
+# */3 * * * * root /shell/firewall.sh -stop
 
 # hour-meter cronjob below (added by hm installation)
 0-59/15 * * * * root /usr/bin/hm -c
 
-# daily rsync365 backuprotation
+# daily pulsechain bin-folder backuprotation
+# You can also use rsync365.sh for other path backups. I do NOT recommend to backup the pulsechain datadir!
+# DO NOT backup the pulsechain datadir using this way! Use a COW filesystem snapshots e.g. ZFS to backup the datadir
 0 0 * * * root /shell/rsync365.sh /mnt/pulsechain/prod/bin /mnt/backup/bin.rsync >/dev/null 2>&1
-0 0 * * * root /shell/rsync365.sh /mnt/pulsechain/bak /mnt/backup/bak.rsync >/dev/null 2>&1
-0 0 * * * root /shell/rsync365.sh /mnt/pulsechain/dev /mnt/backup/dev.rsync >/dev/null 2>&1
 
 # Create ZFS dataset recovery snapshots of /mnt/pulsechain/prod every 10min and remove snapshots older than 48h
+# ONLY NEEDED IF YOU USE A ZFS FILESYSTEM
 */10 * * * * root /sbin/zfs snapshot pool0/pulsechain@mnt-zpool0-pulsechain-prod_$(date +\%Y\%m\%d-\%H\%M\%S).snapshot >/dev/null 2>&1
 4 0 * * * root /mnt/pulsechain/prod/bin/zfs-snapshot-purge.sh >/dev/null 2>&1
+
+# daily creation of pulsechain ZFS prod clone and rsync to /mnt/backup/ followed by cleanup of ZFS snapshot and ZFS snapshot clone
+# ONLY NEEDED IF YOU USE A ZFS FILESYSTEM
+# 0 0 * * * root /mnt/pulsechain/prod/bin/prod-bkp-clone.sh >/dev/null 2>&1
+
+# Create ZFS dataset recovery snapshots of /mnt/pulsechain/prod every 10min and remove snapshots older than 48h
+# ONLY NEEDED IF YOU USE A ZFS FILESYSTEM
+# 0 * * * * root /sbin/zfs snapshot pool0/pulsechain@mnt-zpool0-pulsechain-prod_$(date +\%Y\%m\%d-\%H\%M\%S).snapshot >/dev/null 2>&1
+# 0 2 * * * root /mnt/pulsechain/prod/bin/zfs-snapshot-purge.sh >/dev/null 2>&1
+
+# Weekly ZFS integrity check (every month on the 1st day)
+# ONLY NEEDED IF YOU USE A ZFS FILESYSTEM
+# 0 2 1 * * root /usr/sbin/zpool scrub pool0 >/dev/null 2>&1
 
 # Hourly Pulsechain disk-size log 
 0 * * * * root echo -n $(date '+\%Y-\%m-\%d_\%H:\%M:\%S: ') >> /var/log/pulsechain-df.log ; du -hs /mnt/pulsechain/prod/execution/ | awk '{ printf(" \%s size is \%s. \n", $2, $1) }' >> /var/log/pulsechain-df.log 
@@ -37,3 +40,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 # Daily IP watchlog
 0 0 * * * root echo "`date '+\%Y-\%m-\%d_\%H:\%M:\%S'`: $(/usr/bin/curl -s ident.me)" >> /var/log/ip.log
 
+# Regular daily md5 filesystrem integrity check
+# create filesystem integrity database using 'ic.sh -c'
+0 2 * * * root /shell/ic.sh -i

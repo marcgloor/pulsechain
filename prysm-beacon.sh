@@ -10,6 +10,6 @@ docker run \
   --execution-endpoint=http://127.0.0.1:8551 \
   --checkpoint-sync-url=https://checkpoint.pulsechain.com \
   --genesis-beacon-api-url=https://checkpoint.pulsechain.com \
-  --suggested-fee-recipient=<your-public-eth-pulsechain-wallet-address-here> \
+  --suggested-fee-recipient=<your-walled-addres-here> \
   --p2p-host-ip=$(curl -s ident.me) \
   --min-sync-peers=1
