@@ -8,11 +8,11 @@ f7617c7fba2ccc34fc789f7560fa2d15  ./zfs-snapshot-purge.sh
 56132d5aeefbdcc72d10ee737d174503  ./start-validator.sh
 723c7b9b51fc0c88cdc10bcad8b23913  ./mon.sh
 fcf3940007baf3426ac99b316c4f3d4f  ./rotmon.sh
-baa2ea083bdac02fa3e6b03ab7696ea3  ./ChangeLog
+47129b2ac1f9fab1f88318e9c6b08ecc  ./ChangeLog
 b511f48b75d6d58d3367c845644397de  ./selftest.sh
 d4e715f1af254233db0dcbb12092bcc4  ./pulsechain-console_etcissue.net.png
 5f5e87eb9f724ca272c75e8416022b6f  ./nmon.png
-6222c2c011e9ba8c55e09423e65f4ff7  ./MD5SUM
+4f4d7c9fa75b5706f17500b9af59aafc  ./MD5SUM
 c1f93abf95d56f5c594ce2c718748e3b  ./go-pulse.sh
 cf65f246c85c80420cf263afdf85ee21  ./firewall.sh
 f02462f5e0b21087964e63c178be84f3  ./console.sh
@@ -23,9 +23,9 @@ c2279a0dfb4eeba7a79b846f5fe38391  ./prysm-validator.sh
 b042a2091762aab627ea7a4b0a75cbcf  ./rsync365.sh
 8209136975e19b6e15bf12ca2d85c7c3  ./AUTHORS
 e450a18367bee96cc92e101e3101c45c  ./stop-validator.sh
-05c95c90fc8fe007854daff09774a336  ./README.md,v
+6320b650b06bef1d847b95f925d0a21b  ./README.md,v
 b83829ab46f25249b4e22f3e31b66537  ./issue
-e7842fa291fbc2992577c691b2e3c295  ./README.md
+2938d846941ce3f1c3c503013d92bf7f  ./README.md
 0c4b57efc006627b820b9808a756854d  ./stop-monitors.sh
 7ac270e5aeb046d8453811e90aa8c2e2  ./etc-crontab
 cd74957bcf6dee33d3b3d5d30328a6bb  ./validator-console.png

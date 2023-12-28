@@ -1,5 +1,5 @@
 # README for my pulsechain scripts git repository
-Contact me if you need more support: @go4mark on Telegram (username: Marculix) or b e-mail that you find on [my website](https://marcgloor.github.io). Also checkout my [twitter account/X](https://twitter.com/go_marcgloor) and my older pulsechain validator [youtube demo](https://www.youtube.com/watch?v=9654UtYcnE8) (note: demo does not show the fancy interactive console yet).
+Contact me if you need more support: @marculix on Telegram (username: Marculix) or by e-mail that you find on [my website](https://marcgloor.github.io). Also checkout my [twitter account/X](https://twitter.com/go_marcgloor) and my older pulsechain validator [youtube demo](https://www.youtube.com/watch?v=9654UtYcnE8) (note: demo does not show the fancy interactive console yet).
 
 ## Pulsechain Operations / Screenie demo & Pulsechain firewall
 

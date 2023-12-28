@@ -1,9 +1,14 @@
-head	1.17;
+head	1.18;
 access;
 symbols;
 locks; strict;
 comment	@# @;
 
+
+1.18
+date	2023.12.28.06.21.49;	author root;	state Exp;
+branches;
+next	1.17;
 
 1.17
 date	2023.12.27.20.21.07;	author root;	state Exp;
@@ -96,13 +101,13 @@ desc
 @
 
 
-1.17
+1.18
 log
-@url fix floatinpoint.html
+@@@marculix tg changed
 @
 text
 @# README for my pulsechain scripts git repository
-Contact me if you need more support: @@go4mark on Telegram (username: Marculix) or b e-mail that you find on [my website](https://marcgloor.github.io). Also checkout my [twitter account/X](https://twitter.com/go_marcgloor) and my older pulsechain validator [youtube demo](https://www.youtube.com/watch?v=9654UtYcnE8) (note: demo does not show the fancy interactive console yet).
+Contact me if you need more support: @@marculix on Telegram (username: Marculix) or by e-mail that you find on [my website](https://marcgloor.github.io). Also checkout my [twitter account/X](https://twitter.com/go_marcgloor) and my older pulsechain validator [youtube demo](https://www.youtube.com/watch?v=9654UtYcnE8) (note: demo does not show the fancy interactive console yet).
 
 ## Pulsechain Operations / Screenie demo & Pulsechain firewall
 
@@ -229,6 +234,17 @@ Access to a configurable router for firewall, static routes and port-forwarding 
 #### IP Address
 Static IP (I don't have one but I use dynamic DNS and homebuilt scripts to mitigate unforseen effects should my ISP or my router change the IP address (e.g. via DHCP after a lease expired). I also log my public IP address using the attached crontab job, see [etc-crontab](etc-crontab) and search for 'Daily IP watchlog'.
 
+@
+
+
+1.17
+log
+@url fix floatinpoint.html
+@
+text
+@d2 1
+a2 1
+Contact me if you need more support: @@go4mark on Telegram (username: Marculix) or b e-mail that you find on [my website](https://marcgloor.github.io). Also checkout my [twitter account/X](https://twitter.com/go_marcgloor) and my older pulsechain validator [youtube demo](https://www.youtube.com/watch?v=9654UtYcnE8) (note: demo does not show the fancy interactive console yet).
 @
 
 
