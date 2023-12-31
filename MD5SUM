@@ -8,11 +8,11 @@ f7617c7fba2ccc34fc789f7560fa2d15  ./zfs-snapshot-purge.sh
 56132d5aeefbdcc72d10ee737d174503  ./start-validator.sh
 723c7b9b51fc0c88cdc10bcad8b23913  ./mon.sh
 fcf3940007baf3426ac99b316c4f3d4f  ./rotmon.sh
-ff94aaa1317268e7b7684b87be71a08e  ./ChangeLog
+439b4432f71896aabef4763b61620a84  ./ChangeLog
 b511f48b75d6d58d3367c845644397de  ./selftest.sh
 d4e715f1af254233db0dcbb12092bcc4  ./pulsechain-console_etcissue.net.png
 5f5e87eb9f724ca272c75e8416022b6f  ./nmon.png
-a69c179ff1eae04d264937a54f5cfacb  ./MD5SUM
+ff9f918afecb8ee1e255ae2970c42c6a  ./MD5SUM
 c1f93abf95d56f5c594ce2c718748e3b  ./go-pulse.sh
 cf65f246c85c80420cf263afdf85ee21  ./firewall.sh
 f02462f5e0b21087964e63c178be84f3  ./console.sh
