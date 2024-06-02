@@ -6,7 +6,7 @@ fcf3940007baf3426ac99b316c4f3d4f  ./rotmon.sh
 56132d5aeefbdcc72d10ee737d174503  ./start-validator.sh
 0c4b57efc006627b820b9808a756854d  ./stop-monitors.sh
 17ce68d2cbcf1e99b797f0a7a493a7e7  ./prod-bkp-clone.sh
-8ec3df319dcc01dff0ad3a16975f6850  ./ChangeLog
+4d6840869e967aadcb213cac8ab1abaa  ./ChangeLog
 be51d803ad932b8125b783b29b25583b  ./start-monitors.sh
 a55ec54f219971a3df9bd1c24ca3c79a  ./test-fully-sync.sh
 9da1c7a772697f076d7a6239c257c385  ./issue.net
@@ -30,4 +30,4 @@ b511f48b75d6d58d3367c845644397de  ./selftest.sh
 b042a2091762aab627ea7a4b0a75cbcf  ./rsync365.sh
 f02462f5e0b21087964e63c178be84f3  ./console.sh
 677d0e8c9da4dd8187294c2a4fba83eb  ./prune-and-purge.sh
-04e2f77540b4b2826cab9f3818fd5f9c  ./MD5SUM
+6f7e9d99334c91589bdb3a487037199a  ./MD5SUM
