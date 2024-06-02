@@ -47,7 +47,7 @@ I configured 5 physical disks in 4 bays on a HP Enterprise Microserver Gen 8.
 ### Software
 
 #### Operating System
-Choose your OS and Linux distribution wisely. I personally prefer a highly stable and not volatile Linux distribution that is entreprise datacenter proof like the [Debian stable Linux](https://www.debian.org/releases) distribution. Debian pushes approx. every 2 year a major releasee to production and regular minor security related fixes that do not need downtime. Downtime is the worst for a validator, you will lose attestations and money if not scheduled and planned accordingly. Why not Ubuntu? I am fine with Ubuntu on my desktop but they push every 2nd or 3rd day new kernels which is a total no-go on a validator.
+Choose your OS and Linux distribution wisely. I personally prefer a highly stable and not volatile Linux distribution that is entreprise datacenter proof like the [Debian stable Linux](https://www.debian.org/releases) distribution. Debian pushes approx. every 2 year a major release to production and regular minor security related fixes that do not need downtime. Downtime is the worst for a validator, you will lose attestations and money if not scheduled and planned accordingly. Why not Ubuntu? I am fine with Ubuntu on my desktop but they push every 2nd or 3rd day new kernels which is a total no-go on a validator.
 
 One of my validtor is based on Debian (stable branch) in a redundant dual-bay 2.5" SSD (2 Western Digital RED) to 3.5" [hardware RAID1 mirrored enclosure](https://www.startech.com/en-ch/hdd/35sat225s3r). I keep my Debian linux up to date using regular '$ apt-get -u upgrade && apt-get -u dist-upgrade' jobs that pull the latest packages from the main, contrib and most importantly from the security archives. I use Debian as they developed the most reliable package system and they follow the most reliable release politics, apart from that, Debian is the mother of numerous clone distributions.
 Packages required to use the scripts in my repository:
@@ -110,6 +110,12 @@ My pulsechain validator disk that is holding the full-synced blockchain data str
 
 #### Monitoring:
 Currently I use [MRTG](https://oss.oetiker.ch/mrtg) developed at ETH Zurich and my [pulsechain rotation monitor](rotmon.sh). However, there are more specific monitoring solutions available to monitor your validator.
+
+PulseChain Validator Backlog Time To Maturity Forecasting: I wrote [pvttm.sh](pvttm.sh), a shell wrapper that forecasts the recovery Time-to-Maturity for a validator that was falling behind the 32m balance.
+
+![Console](https://github.com/marcgloor/pulsechain/blob/main/pvttm-1.13.png "Pulsechain Time To Maturity Forecasting")
+
+The script alternatively uses the official PulseChain beacon or [G4MM4's RPC-JSON API Endpoint](https://www.g4mm4.io) to query the validator data. However, I will enrich the script going forward to be supporting the configuratio and launch via commandline args in order so support multiple validator checks. Feel free to send me diff patches if you have smart ideas.
 
 ### Networking
 <update-follows>
