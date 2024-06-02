@@ -1,7 +1,8 @@
 head	1.19;
 access;
 symbols;
-locks; strict;
+locks
+	root:1.19; strict;
 comment	@# @;
 
 

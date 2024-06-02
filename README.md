@@ -115,7 +115,7 @@ PulseChain Validator Backlog Time To Maturity Forecasting: I wrote [pvttm.sh](pv
 
 ![Console](https://github.com/marcgloor/pulsechain/blob/main/pvttm-1.13.png "Pulsechain Time To Maturity Forecasting")
 
-The script alternatively uses the official PulseChain beacon or [G4MM4's RPC-JSON API Endpoint](https://www.g4mm4.io) to query the validator data. However, I will enrich the script going forward to be supporting the configuratio and launch via commandline args in order so support multiple validator checks. Feel free to send me diff patches if you have smart ideas.
+The script alternatively uses the official [PulseChain beacon](https://beacon.pulsechain.com/validators) or [G4MM4's RPC-JSON API Endpoint](https://www.g4mm4.io) to query the validator data. However, I will enrich the script going forward to be supporting the configuratio and launch via commandline args in order so support multiple validator checks. Feel free to send me diff patches if you have smart ideas.
 
 ### Networking
 <update-follows>
