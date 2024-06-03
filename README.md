@@ -111,7 +111,7 @@ My pulsechain validator disk that is holding the full-synced blockchain data str
 #### Monitoring:
 Currently I use [MRTG](https://oss.oetiker.ch/mrtg) developed at ETH Zurich and my [pulsechain rotation monitor](rotmon.sh). However, there are more specific monitoring solutions available to monitor your validator.
 
-PulseChain Validator Backlog Time To Maturity Forecasting: I wrote [pvttm.sh](pvttm.sh), a shell wrapper that forecasts the recovery Time-to-Maturity for a validator that was falling behind the 32m balance.
+PulseChain Validator Backlog Time To Maturity Forecasting: I wrote [pvttm.ksh](pvttm.ksh), a shell wrapper that forecasts the recovery Time-to-Maturity for a validator that was falling behind the 32m balance.
 
 ![Console](https://github.com/marcgloor/pulsechain/blob/main/pvttm-1.13.png "Pulsechain Time To Maturity Forecasting")
 

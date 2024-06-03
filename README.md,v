@@ -1,10 +1,15 @@
-head	1.19;
+head	1.20;
 access;
 symbols;
 locks
-	root:1.19; strict;
+	root:1.20; strict;
 comment	@# @;
 
+
+1.20
+date	2024.06.03.20.36.36;	author root;	state Exp;
+branches;
+next	1.19;
 
 1.19
 date	2024.06.02.14.20.24;	author root;	state Exp;
@@ -107,7 +112,7 @@ desc
 @
 
 
-1.19
+1.20
 log
 @*** empty log message ***
 @
@@ -229,7 +234,7 @@ PulseChain Validator Backlog Time To Maturity Forecasting: I wrote [pvttm.sh](pv
 
 ![Console](https://github.com/marcgloor/pulsechain/blob/main/pvttm-1.13.png "Pulsechain Time To Maturity Forecasting")
 
-The script alternatively uses the official PulseChain beacon or [G4MM4's RPC-JSON API Endpoint](https://www.g4mm4.io) to query the validator data. However, I will enrich the script going forward to be supporting the configuratio and launch via commandline args in order so support multiple validator checks. Feel free to send me diff patches if you have smart ideas.
+The script alternatively uses the official [PulseChain beacon](https://beacon.pulsechain.com/validators) or [G4MM4's RPC-JSON API Endpoint](https://www.g4mm4.io) to query the validator data. However, I will enrich the script going forward to be supporting the configuratio and launch via commandline args in order so support multiple validator checks. Feel free to send me diff patches if you have smart ideas.
 
 ### Networking
 <update-follows>
@@ -246,6 +251,17 @@ Access to a configurable router for firewall, static routes and port-forwarding 
 #### IP Address
 Static IP (I don't have one but I use dynamic DNS and homebuilt scripts to mitigate unforseen effects should my ISP or my router change the IP address (e.g. via DHCP after a lease expired). I also log my public IP address using the attached crontab job, see [etc-crontab](etc-crontab) and search for 'Daily IP watchlog'.
 
+@
+
+
+1.19
+log
+@*** empty log message ***
+@
+text
+@d118 1
+a118 1
+The script alternatively uses the official PulseChain beacon or [G4MM4's RPC-JSON API Endpoint](https://www.g4mm4.io) to query the validator data. However, I will enrich the script going forward to be supporting the configuratio and launch via commandline args in order so support multiple validator checks. Feel free to send me diff patches if you have smart ideas.
 @
 
 
