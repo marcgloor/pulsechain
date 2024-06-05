@@ -3,11 +3,11 @@ f7617c7fba2ccc34fc789f7560fa2d15  ./zfs-snapshot-purge.sh
 fcf3940007baf3426ac99b316c4f3d4f  ./rotmon.sh
 20b343ecf991bec8bde5c1e4291e3373  ./README.md,v
 1ebbd3e34237af26da5dc08a4e440464  ./LICENSE
-f80bf08d5a93c9269f89f95fe9e54c0f  ./pvttm.ksh
+5bce4d0c74dd966abd3a768cd8a85227  ./pvttm.ksh
 56132d5aeefbdcc72d10ee737d174503  ./start-validator.sh
 0c4b57efc006627b820b9808a756854d  ./stop-monitors.sh
 17ce68d2cbcf1e99b797f0a7a493a7e7  ./prod-bkp-clone.sh
-4a43c3cc45fdf33140357d1b79b2a4ad  ./ChangeLog
+aecf6124d3862712cf5853b314d07463  ./ChangeLog
 be51d803ad932b8125b783b29b25583b  ./start-monitors.sh
 a55ec54f219971a3df9bd1c24ca3c79a  ./test-fully-sync.sh
 9da1c7a772697f076d7a6239c257c385  ./issue.net
@@ -30,4 +30,4 @@ b511f48b75d6d58d3367c845644397de  ./selftest.sh
 b042a2091762aab627ea7a4b0a75cbcf  ./rsync365.sh
 f02462f5e0b21087964e63c178be84f3  ./console.sh
 677d0e8c9da4dd8187294c2a4fba83eb  ./prune-and-purge.sh
-e5d8d9423504d31aba888b4caa85a1d0  ./MD5SUM
+9570368d47cff05ba7d18d5dd9d1a95c  ./MD5SUM

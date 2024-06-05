@@ -1,7 +1,7 @@
 #!/bin/ksh
 #
 # @(#) PulseChain Validator Backlog Time to Maturity Forecasting
-# $Id: pvttm.ksh,v 1.14 2024/06/03 20:28:47 root Exp $
+# $Id: pvttm.ksh,v 1.16 2024/06/05 06:51:23 root Exp $
 # 01/Jun/2024 - written by Marc O. Gloor <marc.gloor@u.nus.edu>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -20,13 +20,14 @@
 #
 # DEPENDENCIES:
 #   ksh, curl, jq, awk (mawk or gawk), bc (apt-get install <...>)
-#   bash/sh - change shebang header to sh or bash if you can't take the heat in the kitchen
+#   bash/sh - change shebang to sh or bash and modify script accordingly
+#             in case you need bash for your convenience
 #
 # INSTALLATION:
-#   set exec flag: chmod +x pvttm.ksh (or set perm to 750/754/755)
+#   set exec flag: chmod +x pvttm.ksh (or chmod to 750/754/755)
 #   In config section below, choose the suitable BEACON address
 
-# ---- begin of config section -------------------------------------------------
+# ---- begin config section -------------------------------------------------
 
 # Global settings
 # Note: In case PulseChain beacon is down or not updating, use alternative beacons
@@ -35,13 +36,14 @@
 #BEACON="https://beacon.pulsechain.com/api/v1/validator/"
 BEACON="https://rpc-pulsechain.g4mm4.io/beacon-api/eth/v1/beacon/states/head/validators?id="
 
-# ---- end of config section ---------------------------------------------------
+# ---- end config section ---------------------------------------------------
 
 # Set cmd-line args if non-interactive mode (-q) has been requested
 VALIDATORID=$2
 AVGPLSPAYOFF=$3
 
-function query_balances {
+# Perform validator calculations module
+function query_balances { 
 	# Validator backlog / balance lagging behind
 	VALBACKLOG=`expr \( 32000000 - $VALBALANCE \)`
 
@@ -55,33 +57,43 @@ function query_balances {
 	VALRECTIMEDAYS=$(echo "scale=2; ($VALRECTIMEHOURS / 24 )"|bc)
 
 	# Forecasted TTM date where PLS balance equals 32m
-	VALRECDATE=$(date -d "+$(echo $VALRECTIMEHOURS | awk '{printf "%d hours %d minutes", $1, ($1-int($1))*60}')" +"%d-%b-%Y %H:%M")
+	VALRECDATE=$(date -d "+$(echo $VALRECTIMEHOURS | awk '{printf "%d hours %d minutes", \
+                   $1, ($1-int($1))*60}')" +"%d-%b-%Y %H:%M")
 }
 
+# Interactive function module
 function interactive_cfg {
 	echo -n "Validator ID (5-digit): "
 	read VALIDATORID
-    BEACON_URL="$BEACON$VALIDATORID" # Set beacon URL
+	BEACON_URL="$BEACON$VALIDATORID" # Set beacon URL
 	echo -n "Current avg PLS payoff per attestation: "
 	read AVGPLSPAYOFF
-    entry_check
-}
 
-function query_beacon {
-	# Check if arguments $2 and $3 have been provided
 	if [ -z "$VALIDATORID" ] || [ -z "$AVGPLSPAYOFF" ]; then
-		echo "  Error: -q option implies two more arguments"
-		echo "  Example: pvttm.ksh -q <Validator-ID> <Avg-PLS-Attestation-Rate>"
+		echo "  Error: No value(s) provided. Please start over again."
 		exit 1
 	fi
 
-	BEACON_URL="$BEACON$VALIDATORID" # Set beacon URL
-    entry_check
+	entry_check
 }
 
+# Check if cmdline args $2 and $3 have been provided and set beacon URL
+function query_beacon {
+	if [ -z "$VALIDATORID" ] || [ -z "$AVGPLSPAYOFF" ]; then
+		echo "  Error: -q option implies two subsequent arguments"
+		echo "  Example: pvttm.ksh -q <Validator-ID> <Avg-PLS-Attestation-Rate>"
+		exit 1
+	fi
+ 
+	# Set beacon URL
+	BEACON_URL="$BEACON$VALIDATORID"
+	entry_check
+}
+
+# Validator Balance / use cmd-line arg $1 as validator-ID
 function entry_check {
-	# Validator Balance / use cmd-line arg $1 as validator-ID
-	VALBALANCE=$(curl -s -X GET "$BEACON_URL" -H "accept: application/json" | jq | grep "\"balance\":" | tr -d "\""  | awk -F: '{printf "%.0f\n", $2 / 1000000000}' )
+        VALBALANCE=$(curl -s -X GET "$BEACON_URL" -H "accept: application/json" | jq | grep "\"balance\":" |\
+                   tr -d "\""  | awk -F: '{printf "%.0f\n", $2 / 1000000000}' )
 
 	if [ $VALBALANCE -lt 32000000 ]; then  # quick validation if validator is lagging or not
 		 query_balances
@@ -92,6 +104,7 @@ function entry_check {
 	fi
 }
 
+# Display metrics on the console
 function show_metrics {
 	echo "-----------------------------------------------------"
 	echo -n "Validator ID                      : " ; echo $VALIDATORID
@@ -105,13 +118,15 @@ function show_metrics {
 	echo "-----------------------------------------------------"
 }
 
+# Display RCS rev control version tag
 function show_version {
-	echo "PulseChain Validator Backlog Time To Maturity Forecasting"    # Header
-	echo "\$Id: pvttm.ksh,v 1.14 2024/06/03 20:28:47 root Exp $"  # RCS rev control tag
-	echo "written by Marc O. Gloor <marc.gloor@u.nus.edu>"              # Author's note
-    echo ""
+	echo "PulseChain Validator Backlog Time To Maturity Forecasting"
+	echo "\$Id: pvttm.ksh,v 1.16 2024/06/05 06:51:23 root Exp $"
+	echo "written by Marc O. Gloor <marc.gloor@u.nus.edu>"
+	echo ""
 }
 
+# Display help screen
 function show_help {
 	echo " "
 	echo " Usage: pvttm.ksh [-i][-v][-h][-q] <Validator-ID> <Avg-PLS-Attestation-Rate>"
