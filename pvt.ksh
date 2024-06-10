@@ -1,7 +1,7 @@
 #!/bin/ksh
 #
 # @(#) PulseChain Validator Telemetry (pvt.ksh)
-# $Id: pvt.ksh,v 1.23 2024/06/10 09:41:17 root Exp $
+# $Id: pvt.ksh,v 1.24 2024/06/10 09:52:21 root Exp $
 # 01/Jun/2024 - written by Marc O. Gloor <marc.gloor@u.nus.edu>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -91,7 +91,7 @@ function interactive_cfg {
 function query_beacon {
 	if [ -z "$VALIDATORID" ] || [ -z "$AVGPLSPAYOFF" ]; then
 		echo "  Error: -q option implies two subsequent arguments"
-		echo "  Example: pvttm.ksh -q <Validator-ID> <Avg-PLS-Attestation-Rate>"
+		echo "  Example: pvt.ksh -q <Validator-ID> <Avg-PLS-Attestation-Rate>"
 		exit 1
 	fi
  
@@ -147,7 +147,7 @@ function display_telemetry_backlog {
 # Display RCS rev control version tag
 function show_version {
 	echo "PulseChain Validator Backlog Time To Maturity Forecasting"
-	echo "\$Id: pvt.ksh,v 1.23 2024/06/10 09:41:17 root Exp $"
+	echo "\$Id: pvt.ksh,v 1.24 2024/06/10 09:52:21 root Exp $"
 	echo "written by Marc O. Gloor <marc.gloor@u.nus.edu>"
 	echo ""
 }
@@ -155,7 +155,7 @@ function show_version {
 # Display help screen
 function show_help {
 	echo " "
-	echo " Usage: pvttm.ksh [-i][-v][-h][-q] <Validator-ID> <Avg-PLS-Attestation-Rate>"
+	echo " Usage: pvt.ksh [-i][-v][-h][-q] <Validator-ID> <Avg-PLS-Attestation-Rate>"
 	echo " "
 	echo " Syntax:"
 	echo "   -i (*)         interactive configuration (default)"
