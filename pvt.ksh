@@ -1,7 +1,7 @@
 #!/bin/ksh
 #
 # @(#) PulseChain Validator Telemetry (pvt.ksh)
-# $Id: pvt.ksh,v 1.22 2024/06/10 09:03:59 root Exp $
+# $Id: pvt.ksh,v 1.23 2024/06/10 09:41:17 root Exp $
 # 01/Jun/2024 - written by Marc O. Gloor <marc.gloor@u.nus.edu>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -24,8 +24,15 @@
 #             in case you need bash for your convenience
 #
 # INSTALLATION:
-#   set exec flag: chmod +x pvttm.ksh (or chmod to 750/754/755)
+#   set exec flag: chmod +x pvt.ksh (or chmod to 750/754/755)
 #   In config section below, choose the suitable BEACON address
+#
+# TODO:
+# Add multiple validators (interactive and commandline)
+# Increase interoperability, migrate code to Python
+# WhatsApp push module
+# Telegram push module
+#
 
 # ---- begin config section -------------------------------------------------
 
@@ -140,7 +147,7 @@ function display_telemetry_backlog {
 # Display RCS rev control version tag
 function show_version {
 	echo "PulseChain Validator Backlog Time To Maturity Forecasting"
-	echo "\$Id: pvt.ksh,v 1.22 2024/06/10 09:03:59 root Exp $"
+	echo "\$Id: pvt.ksh,v 1.23 2024/06/10 09:41:17 root Exp $"
 	echo "written by Marc O. Gloor <marc.gloor@u.nus.edu>"
 	echo ""
 }
