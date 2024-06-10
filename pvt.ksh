@@ -1,7 +1,7 @@
 #!/bin/ksh
 #
-# @(#) PulseChain Validator Backlog Time to Maturity Forecasting
-# $Id: pvttm.ksh,v 1.16 2024/06/05 06:51:23 root Exp $
+# @(#) PulseChain Validator Telemetry (pvt.ksh)
+# $Id: pvt.ksh,v 1.22 2024/06/10 09:03:59 root Exp $
 # 01/Jun/2024 - written by Marc O. Gloor <marc.gloor@u.nus.edu>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -42,6 +42,9 @@ BEACON="https://rpc-pulsechain.g4mm4.io/beacon-api/eth/v1/beacon/states/head/val
 VALIDATORID=$2
 AVGPLSPAYOFF=$3
 
+# Set report date
+QUERYDATE=$(date "+%d-%b-%Y %H:%M:%S")
+
 # Perform validator calculations module
 function query_balances { 
 	# Validator backlog / balance lagging behind
@@ -70,7 +73,7 @@ function interactive_cfg {
 	read AVGPLSPAYOFF
 
 	if [ -z "$VALIDATORID" ] || [ -z "$AVGPLSPAYOFF" ]; then
-		echo "  Error: No value(s) provided. Please start over again."
+		echo "  Error: No metric(s) provided. Please start over again."
 		exit 1
 	fi
 
@@ -92,36 +95,52 @@ function query_beacon {
 
 # Validator Balance / use cmd-line arg $1 as validator-ID
 function entry_check {
+        # Check package/commands dependencies are met
+        check_commands
+
         VALBALANCE=$(curl -s -X GET "$BEACON_URL" -H "accept: application/json" | jq | grep "\"balance\":" |\
                    tr -d "\""  | awk -F: '{printf "%.0f\n", $2 / 1000000000}' )
+        PLSPRICE=$(curl -s "https://api.coingecko.com/api/v3/simple/price?ids=pulsechain&vs_currencies=usd" \
+                     | jq -r ".pulsechain.usd" | xargs printf "%.6f\n")  
+	VALMRKTSTKVAL=$(echo "scale=2; ($PLSPRICE * 32000000 )"|bc|  awk -F: '{printf "%.0f$\n", $1}')
 
 	if [ $VALBALANCE -lt 32000000 ]; then  # quick validation if validator is lagging or not
 		 query_balances
-		 show_metrics
+		 display_telemetry
+                 display_telemetry_backlog
+	         echo "--------------------------------------------------------"
 	  else
-		 echo "Validator $VALIDATORID is not lagging behind the 32m baseline. All good."
+                 # Validator is not lagging behind the 32m threshold. All good.
+	         VALBACKLOG="no backlog (ok)"
+		 display_telemetry
+	         echo "--------------------------------------------------------"
 		 exit 0
 	fi
 }
 
-# Display metrics on the console
-function show_metrics {
-	echo "-----------------------------------------------------"
+# display validator telemetry
+function display_telemetry {
+	echo "--------------------------------------------------------"
+	echo -n "Report date                       : " ; echo $QUERYDATE
 	echo -n "Validator ID                      : " ; echo $VALIDATORID
-	echo -n "Validator Balance                 : " ; echo $VALBALANCE
-	echo -n "PLS Backlog                       : " ; echo $VALBACKLOG
+	echo -n "Validator PLS Balance             : " ; echo $VALBALANCE
+	echo -n "Validator PLS Backlog             : " ; echo $VALBACKLOG
+	echo -n "Validator Stake Market Value      : " ; echo $VALMRKTSTKVAL
+	echo -n "PLS price                         : " ; echo $PLSPRICE
 	echo -n "Avg PLS Payoff per attestation    : " ; echo $AVGPLSPAYOFF
-	echo -n "PLS recovery rate per day         : " ; echo $VALPLSRECPERDAY
-	echo -n "Estimated recovery time in hours  : " ; echo $VALRECTIMEHOURS
-	echo -n "Estimated recovery time in days   : " ; echo $VALRECTIMEDAYS
-	echo -n "Validator Time to Maturity        : " ; echo $VALRECDATE
-	echo "-----------------------------------------------------"
+}
+
+# Show validator backlog telemetry when detected
+function display_telemetry_backlog {
+        echo -n "PLS recovery rate per day         : " ; echo $VALPLSRECPERDAY
+        echo -n "Estimated recovery time [h/d]     : " ; echo "$VALRECTIMEHOURS / $VALRECTIMEDAYS"
+        echo -n "Validator Time to Maturity (ETC)  : " ; echo $VALRECDATE
 }
 
 # Display RCS rev control version tag
 function show_version {
 	echo "PulseChain Validator Backlog Time To Maturity Forecasting"
-	echo "\$Id: pvttm.ksh,v 1.16 2024/06/05 06:51:23 root Exp $"
+	echo "\$Id: pvt.ksh,v 1.22 2024/06/10 09:03:59 root Exp $"
 	echo "written by Marc O. Gloor <marc.gloor@u.nus.edu>"
 	echo ""
 }
@@ -137,6 +156,39 @@ function show_help {
 	echo "   -h             show help"
 	echo "   -q arg1 arg2   query beacon <Validator-ID> <Avg-PLS-Attestation-Rate>"
 	echo " "
+}
+
+check_commands() {
+    # Array of commands to check
+    typeset -A commands
+    commands=(
+        [ksh]="ksh"
+        [curl]="curl"
+        [jq]="jq"
+        [awk]="awk"
+        [mawk]="mawk"
+        [gawk]="gawk"
+        [bc]="bc"
+    )
+
+    # Loop through commands and check if they are installed
+    for cmd in "${!commands[@]}"; do
+        if ! command -v "${commands[$cmd]}" >/dev/null 2>&1; then
+            if [[ "$cmd" == "awk" ]]; then
+                # Special case for awk: check for either mawk or gawk
+                if ! command -v "mawk" >/dev/null 2>&1 && ! command -v "gawk" >/dev/null 2>&1; then
+                    echo "Neither mawk nor gawk is installed. Please install."
+                    return 1
+                fi
+            else
+                echo "${commands[$cmd]} is not installed. Please install."
+                return 1
+            fi
+        fi
+    done
+
+    # all pkgs deps pre-reqs met, proceed with the program
+    return 0
 }
 
 case "$1" in

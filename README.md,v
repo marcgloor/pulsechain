@@ -1,10 +1,19 @@
-head	1.20;
+head	1.22;
 access;
 symbols;
-locks
-	root:1.20; strict;
+locks; strict;
 comment	@# @;
 
+
+1.22
+date	2024.06.10.09.14.42;	author root;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2024.06.10.09.12.57;	author root;	state Exp;
+branches;
+next	1.20;
 
 1.20
 date	2024.06.03.20.36.36;	author root;	state Exp;
@@ -112,9 +121,9 @@ desc
 @
 
 
-1.20
+1.22
 log
-@*** empty log message ***
+@pvttm renamed to pvt.ksh
 @
 text
 @# README for my pulsechain scripts git repository
@@ -230,7 +239,7 @@ My pulsechain validator disk that is holding the full-synced blockchain data str
 #### Monitoring:
 Currently I use [MRTG](https://oss.oetiker.ch/mrtg) developed at ETH Zurich and my [pulsechain rotation monitor](rotmon.sh). However, there are more specific monitoring solutions available to monitor your validator.
 
-PulseChain Validator Backlog Time To Maturity Forecasting: I wrote [pvttm.sh](pvttm.sh), a shell wrapper that forecasts the recovery Time-to-Maturity for a validator that was falling behind the 32m balance.
+PulseChain Validator Telemetry: I wrote [pvt.ksh](pvt.ksh), a korn-shell script that queries the validator status and forecasts the recovery Time-to-Maturity for a validator that was falling behind the 32m balance.
 
 ![Console](https://github.com/marcgloor/pulsechain/blob/main/pvttm-1.13.png "Pulsechain Time To Maturity Forecasting")
 
@@ -251,6 +260,28 @@ Access to a configurable router for firewall, static routes and port-forwarding 
 #### IP Address
 Static IP (I don't have one but I use dynamic DNS and homebuilt scripts to mitigate unforseen effects should my ISP or my router change the IP address (e.g. via DHCP after a lease expired). I also log my public IP address using the attached crontab job, see [etc-crontab](etc-crontab) and search for 'Daily IP watchlog'.
 
+@
+
+
+1.21
+log
+@*** empty log message ***
+@
+text
+@d114 1
+a114 1
+PulseChain Validator Backlog Time To Maturity Forecasting: I wrote [pvttm.ksh](pvttm.ksh), a shell wrapper that forecasts the recovery Time-to-Maturity for a validator that was falling behind the 32m balance.
+@
+
+
+1.20
+log
+@*** empty log message ***
+@
+text
+@d114 1
+a114 1
+PulseChain Validator Backlog Time To Maturity Forecasting: I wrote [pvttm.sh](pvttm.sh), a shell wrapper that forecasts the recovery Time-to-Maturity for a validator that was falling behind the 32m balance.
 @
 
 
